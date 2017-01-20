@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'tracer' => [
+            'driver' => 'session',
+            'provider' => 'alumni',
+        ],
 
         'api' => [
             'driver' => 'token',
@@ -70,10 +74,10 @@ return [
             'model' => App\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'alumni' => [
+            'driver' => 'eloquent',
+            'model' => App\Alumni::class,
+        ],
     ],
 
     /*
@@ -94,6 +98,11 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'alumni' => [
+            'provider' => 'alumni',
             'table' => 'password_resets',
             'expire' => 60,
         ],

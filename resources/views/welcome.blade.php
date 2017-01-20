@@ -69,13 +69,14 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     <a href="{{ url('/login') }}">Login</a>
-                    <a href="{{ url('/register') }}">Register</a>
+                    <a href="{{ url('/login-alumni') }}">Login Alumni</a>
+                    <a href="{{ url('/reg-alumni') }}">Daftar Alumni</a>
                 </div>
             @endif
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Tracer Study
                 </div>
 
                 <div class="links">
