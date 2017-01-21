@@ -66,6 +66,7 @@ class AlumniController extends Controller
             $alumni->tempat_lahir = $request->input('tempat_lahir');
             $alumni->tanggal_lahir = date('Y-m-d', strtotime($request->input('tanggal_lahir')));
             $alumni->jurusan = $request->input('jurusan');
+            $alumni->no_hp = $request->input('no_hp');
             $alumni->tahun_lulus = $request->input('tahun_lulus');
             $alumni->alamat = $request->input('alamat');
 
@@ -82,6 +83,7 @@ class AlumniController extends Controller
             $alumni->tempat_lahir = $request->input('tempat_lahir');
             $alumni->tanggal_lahir = date('Y-m-d', strtotime($request->input('tanggal_lahir')));
             $alumni->jurusan = $request->input('jurusan');
+            $alumni->no_hp = $request->input('no_hp');
             $alumni->angkatan = $request->input('tahun_lulus');
             $alumni->alamat = $request->input('alamat');
 
@@ -91,6 +93,11 @@ class AlumniController extends Controller
                 return "Gagal Register";
             }
         }
+    }
+
+    public function daftar_alumni()
+    {
+        return view('');
     }
 
     public function index_tracer()
