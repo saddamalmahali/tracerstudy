@@ -258,13 +258,13 @@
                                         <div class="form-group {{ $errors->has('f8_radio_input') ? ' has-error' : '' }}">
                                             <div class="radio">
                                                 <label>
-                                                <input type="radio" name="f8_radio_input" class="flat-red" id="optionsRadios1" value="ya" checked>
+                                                <input type="radio" name="f8_radio_input" class="flat-red" id="optionsRadios1" value="1" checked>
                                                 Ya
                                                 </label>
                                             </div>
                                             <div class="radio">
                                                 <label>
-                                                <input type="radio" name="f8_radio_input" class="flat-red" id="optionsRadios2" value="tidak">
+                                                <input type="radio" name="f8_radio_input" class="flat-red" id="optionsRadios2" value="0">
                                                 Tidak
                                                 </label>
                                             </div>
@@ -352,7 +352,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="input-lainnya-f11">
-                                                    <input type="text" class="form-control" placeholder="Inputkan Jenis Perusahaan">
+                                                    <input type="text" class="form-control" name="f11_input_text" placeholder="Inputkan Jenis Perusahaan">
                                                 </div>
                                             </div>
                                         </div>

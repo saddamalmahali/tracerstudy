@@ -11,7 +11,23 @@
     </section>
 
     <section class="content">
-        <h2>Halaman Alumni</h2>
+        <div class="box box-primary">
+            <div class="box-body">
+                <h2>Selamat Datang</h2>
+                <br />
+                <p>Terima Kasih atas perhatian dan waktu yang telah Anda berikan dalam berpartisipasi mengisi quesioner program ini.</p>
+
+                <br />
+                <p>
+                    <div class="pull-right" style="margin-right:100px; margin-bottom:50px;">
+                        <i>Hormat Kami<p></p></i>
+
+                    </div>
+                </p>
+
+            </div>
+        </div>
+
     </section>
 
     <script>
