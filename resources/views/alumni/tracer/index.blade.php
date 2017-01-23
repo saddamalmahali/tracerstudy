@@ -17,36 +17,38 @@
                     <div class="box-header">
                         <h3 class="box-title">Form Quesioner</h3>
                     </div>
-                    <form action="">
+                    <form action="{{url('/alumni/submit_form_tracer')}}" method="post">
+                        {{ csrf_field() }}
                         <div class="box-body">
                             <table class='table'>
                                 <tr class="bg-primary">
                                     <th colspan="3">Form Data Pengisi</th>
                                 </tr>
+                                
                                 <tr>
                                     <td class="text-danger" style="vertical-align:middle;" width="10%">F1</td>
                                     <td width="20%" style="vertical-align:middle;">Kode PT</td>
-                                    <td><input type="text" class="form-control" style="width:20%;" readonly value="{{$alumni->kode_kampus}}"></td>
+                                    <td><input type="text" class="form-control" style="width:20%;" name="kode_pt" readonly value="{{$alumni->kode_kampus}}"></td>
                                 </tr>
                                 <tr>
                                     <td class="text-danger" style="vertical-align:middle;" width="10%"></td>
                                     <td width="20%" style="vertical-align:middle;">Kode Prodi</td>
-                                    <td><input type="text" class="form-control" style="width:20%;" readonly value="{{$alumni->jurusan}}"></td>
+                                    <td><input type="text" class="form-control" style="width:20%;" name="kode_prodi" readonly value="{{$alumni->jurusan}}"></td>
                                 </tr>
                                 <tr>
                                     <td class="text-danger" style="vertical-align:middle;" width="10%"></td>
                                     <td width="20%" style="vertical-align:middle;">Nama</td>
-                                    <td><input type="text" class="form-control" style="width:30%;" value="{{$alumni->nama_depan.' '.$alumni->nama_belakang}}" readonly></td>
+                                    <td><input type="text" class="form-control" style="width:30%;" name="nama" value="{{$alumni->nama_depan.' '.$alumni->nama_belakang}}" readonly></td>
                                 </tr>
                                 <tr>
                                     <td class="text-danger" style="vertical-align:middle;" width="10%"></td>
                                     <td width="20%" style="vertical-align:middle;">No. Telp/HP</td>
-                                    <td><input type="text" class="form-control" style="width:30%;" placeholder="Masukan No Telp. Anda" value="{{$alumni->no_hp}}" readonly></td>
+                                    <td><input type="text" class="form-control" style="width:30%;" name="no_hp" placeholder="Masukan No Telp. Anda" value="{{$alumni->no_hp}}" readonly></td>
                                 </tr>
                                 <tr>
                                     <td class="text-danger" style="vertical-align:middle;" width="10%"></td>
                                     <td width="20%" style="vertical-align:middle;">Email</td>
-                                    <td><input type="text" class="form-control" style="width:30%;" placeholder="Email Anda yang masih aktif" readonly value="{{$alumni->email}}"></td>
+                                    <td><input type="text" class="form-control" style="width:30%;" name="email" placeholder="Email Anda yang masih aktif" readonly value="{{$alumni->email}}"></td>
                                 </tr>
                             </table>
 
@@ -57,15 +59,15 @@
                                 </tr>
                                 <tr>
                                     <td class="text-danger" style="vertical-align:top;" align="center" width="5%">F3</td>
-                                    <td width="30%" style="vertical-align:top;">Kapan anda mulai mencari pekerjaan? <p>(Mohon pekerjaan sambilan tidak dimasukkan)</p></td>
+                                    <td width="30%" style="vertical-align:top;">Kapan anda mulai mencari pekerjaan? <p>(Jika tidak sedang mencari kerja langsung ke pertanyaan f8)</p></td>
                                     <td>
-                                        <div class="form-group">
-                                            <div class="col-md-2"><input type="number" name="f1_input_text" class="form-control"></div>
+                                        <div class="form-group{{ $errors->has('f3_input_text') ? ' has-error' : '' }}">
+                                            <div class="col-md-2"><input type="number" name="f3_input_text" class="form-control"></div>
                                             <div class="col-md-10">
-                                                <select name="f1_select_input" id="f1_select_input" class="form-control">
+                                                <select name="f3_select_input" id="f3_select_input" class="form-control">
                                                     <option value="" disabled selected>Pilih Opsi</option>
-                                                    <option value="sebelum">Bulan Sebelum Lulus</option>
-                                                    <option value="sesudah">Bulan Sesudah Lulus</option>
+                                                    <option value="1">Bulan Sebelum Lulus</option>
+                                                    <option value="2">Bulan Sesudah Lulus</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -75,107 +77,107 @@
                                     <td class="text-danger" style="vertical-align:top;" width="5%" align="center">F4</td>
                                     <td style="vertical-align:top;">Bagaimana anda mencari pekerjaan tersebut? Jawaban bisa lebih dari satu</td>
                                     <td>
-                                        <div class="form-group">
-                                            <div class="checkbox">
+                                        <div class="form-group{{ $errors->has('f4_check') ? ' has-error' : '' }}">
+                                            <div class="checkbox" >
                                                 <label>
-                                                <input type="checkbox" class="flat-red">
+                                                <input type="checkbox" class="flat-red" name="f4_check[1]" value="1">
                                                 Melalui iklan di koran/majalah, brosur
                                                 </label>
                                             </div>
 
                                             <div class="checkbox">
                                                 <label>
-                                                <input type="checkbox" class="flat-red">
+                                                <input type="checkbox" class="flat-red" name="f4_check[2]" value="2">
                                                 Melamar ke perusahaan tanpa mengetahui lowongan yang ada
                                                 </label>
                                             </div>
 
                                             <div class="checkbox">
                                                 <label>
-                                                <input type="checkbox" class="flat-red">
+                                                <input type="checkbox" class="flat-red" name="f4_check[3]" value="3">
                                                 Pergi ke bursa/pameran kerja
                                                 </label>
                                             </div>
 
                                             <div class="checkbox">
                                                 <label>
-                                                <input type="checkbox" class="flat-red">
+                                                <input type="checkbox" class="flat-red" name="f4_check[4]" value="4">
                                                 Mencari lewat internet/iklan online/milis
                                                 </label>
                                             </div>
                                             <div class="checkbox">
                                                 <label>
-                                                <input type="checkbox" class="flat-red">
+                                                <input type="checkbox" class="flat-red" name="f4_check[5]" value="5">
                                                 Dihubungi oleh perusahaan
                                                 </label>
                                             </div>
 
                                             <div class="checkbox">
                                                 <label>
-                                                <input type="checkbox" class="flat-red">
+                                                <input type="checkbox" class="flat-red" name="f4_check[6]" value="6">
                                                 Menghubungi Kemenakertrans
                                                 </label>
                                             </div>
 
                                             <div class="checkbox">
                                                 <label>
-                                                <input type="checkbox" class="flat-red">
+                                                <input type="checkbox" class="flat-red" name="f4_check[7]" value="7">
                                                 Menghubungi agen tenaga kerja komersial/swasta
                                                 </label>
                                             </div>
 
                                             <div class="checkbox">
                                                 <label>
-                                                <input type="checkbox" class="flat-red">
+                                                <input type="checkbox" class="flat-red" name="f4_check[8]" value="8">
                                                 Memeroleh informasi dari pusat/kantor pengembangan karir fakultas/universitas
                                                 </label>
                                             </div>
                                             
                                             <div class="checkbox">
                                                 <label>
-                                                <input type="checkbox" class="flat-red">
+                                                <input type="checkbox" class="flat-red" name="f4_check[9]" value="9">
                                                 Menghubungi kantor kemahasiswaan/hubungan alumni
                                                 </label>
                                             </div>
                                             
                                             <div class="checkbox">
                                                 <label>
-                                                <input type="checkbox" class="flat-red">
+                                                <input type="checkbox" class="flat-red" name="f4_check[10]" value="10">
                                                 Membangun jejaring (network) sejak masih kuliah
                                                 </label>
                                             </div>
                                             
                                             <div class="checkbox">
                                                 <label>
-                                                <input type="checkbox" class="flat-red">
+                                                <input type="checkbox" class="flat-red" name="f4_check[10]" value="10">
                                                 Melalui relasi (misalnya dosen, orang tua, saudara, teman, dll.)
                                                 </label>
                                             </div>
 
                                             <div class="checkbox">
                                                 <label>
-                                                <input type="checkbox" class="flat-red">
+                                                <input type="checkbox" class="flat-red" name="f4_check[11]" value="11">
                                                 Membangun bisnis sendiri
                                                 </label>
                                             </div>
 
                                             <div class="checkbox">
                                                 <label>
-                                                <input type="checkbox" class="flat-red">
+                                                <input type="checkbox" class="flat-red" name="f4_check[12]" value="12">
                                                 Melalui penempatan kerja atau magang
                                                 </label>
                                             </div>
 
                                             <div class="checkbox">
                                                 <label>
-                                                <input type="checkbox" class="flat-red">
+                                                <input type="checkbox" class="flat-red" name="f4_check[13]" value="13">
                                                 Bekerja di tempat yang sama dengan tempat kerja semasa kuliah
                                                 </label>
                                             </div>
 
                                             <div class="checkbox">
                                                 <label>
-                                                <input type="checkbox" class="flat-red">
+                                                <input type="checkbox" class="flat-red" name="f4_check[14]" value="14">
                                                 Lainnya
                                                 </label>
                                             </div>
@@ -186,13 +188,13 @@
                                     <td class="text-danger" style="vertical-align:top;" align="center" width="5%">F5</td>
                                     <td width="30%" style="vertical-align:top;">Berapa bulan waktu yang dihabiskan (sebelum dan sesudah kelulusan) untuk memeroleh pekerjaan pertama?</td>
                                     <td>
-                                        <div class="form-group">
+                                        <div class="form-group {{ $errors->has('f5_input_text') ? ' has-error' : '' }}">
                                             <div class="col-md-2"><input type="number" name="f5_input_text" class="form-control"></div>
-                                            <div class="col-md-10">
+                                            <div class="col-md-10{{ $errors->has('f5_select_input') ? ' has-error' : '' }}">
                                                 <select name="f5_select_input" id="f5_select_input" class="form-control">
                                                     <option value="" disabled selected>Pilih Opsi</option>
-                                                    <option value="sebelum">Bulan Sebelum Lulus</option>
-                                                    <option value="sesudah">Bulan Sesudah Lulus</option>
+                                                    <option value="1">Bulan Sebelum Lulus</option>
+                                                    <option value="2">Bulan Sesudah Lulus</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -202,14 +204,14 @@
                                     <td class="text-danger" style="vertical-align:top;" align="center" width="5%">F6</td>
                                     <td width="30%" style="vertical-align:top;">Berapa perusahaan/instansi/institusi yang sudah anda lamar (lewat surat atau e-mail) sebelum anda memeroleh pekerjaan pertama?</td>
                                     <td>
-                                        <div class="form-group">
+                                        <div class="form-group {{ $errors->has('f6_input_text') ? ' has-error' : '' }}">
                                             <div class="col-md-2"><input type="number" name="f6_input_text" class="form-control"></div>
-                                            <div class="col-md-10">
+                                            <div class="col-md-10{{ $errors->has('f6_select_input') ? ' has-error' : '' }}">
                                                 <select name="f6_select_input" id="f6_select_input" class="form-control">
                                                     <option value="" disabled selected>Pilih Opsi</option>
-                                                    <option value="perusahaan">Perusahaan</option>
-                                                    <option value="instansi">Instansi</option>
-                                                    <option value="institusi">Institusi</option>
+                                                    <option value="1">Perusahaan</option>
+                                                    <option value="2">Instansi</option>
+                                                    <option value="3">Institusi</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -219,14 +221,14 @@
                                     <td class="text-danger" style="vertical-align:top;" align="center" width="5%">F7</td>
                                     <td width="30%" style="vertical-align:top;">Berapa banyak perusahaan/instansi/institusi yang merespons lamaran anda?</td>
                                     <td>
-                                        <div class="form-group">
+                                        <div class="form-group {{ $errors->has('f7_input_text') ? ' has-error' : '' }}">
                                             <div class="col-md-2"><input type="number" name="f7_input_text" class="form-control"></div>
-                                            <div class="col-md-10">
+                                            <div class="col-md-10 {{ $errors->has('f7_select_input') ? ' has-error' : '' }}">
                                                 <select name="f7_select_input" id="f7_select_input" class="form-control">
                                                     <option value="" disabled selected>Pilih Opsi</option>
-                                                    <option value="perusahaan">Perusahaan</option>
-                                                    <option value="instansi">Instansi</option>
-                                                    <option value="institusi">Institusi</option>
+                                                    <option value="1">Perusahaan</option>
+                                                    <option value="2">Instansi</option>
+                                                    <option value="3">Institusi</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -236,14 +238,14 @@
                                     <td class="text-danger" style="vertical-align:top;" align="center" width="5%">F7a</td>
                                     <td width="30%" style="vertical-align:top;">Berapa banyak perusahaan/instansi/institusi yang mengundang anda untuk wawancara?</td>
                                     <td>
-                                        <div class="form-group">
+                                        <div class="form-group{{ $errors->has('f7a_input_text') ? ' has-error' : '' }}">
                                             <div class="col-md-2"><input type="number" name="f7a_input_text" class="form-control"></div>
-                                            <div class="col-md-10">
+                                            <div class="col-md-10 {{ $errors->has('f7a_select_input') ? ' has-error' : '' }}">
                                                 <select name="f7a_select_input" id="f7a_select_input" class="form-control">
                                                     <option value="" disabled selected>Pilih Opsi</option>
-                                                    <option value="perusahaan">Perusahaan</option>
-                                                    <option value="instansi">Instansi</option>
-                                                    <option value="institusi">Institusi</option>
+                                                    <option value="1">Perusahaan</option>
+                                                    <option value="2">Instansi</option>
+                                                    <option value="3">Institusi</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -251,18 +253,18 @@
                                 </tr>
                                 <tr>
                                     <td class="text-danger" style="vertical-align:top;" align="center" width="5%">F8</td>
-                                    <td width="30%" style="vertical-align:top;">Apakah anda bekerja saat ini (termasuk kerja sambilan dan wirausaha)?</td>
+                                    <td width="30%" style="vertical-align:top;">Apakah anda bekerja saat ini (termasuk kerja sambilan dan wirausaha. Jika ya, lanjutkan ke f11)?</td>
                                     <td>
-                                        <div class="form-group">
+                                        <div class="form-group {{ $errors->has('f8_radio_input') ? ' has-error' : '' }}">
                                             <div class="radio">
                                                 <label>
-                                                <input type="radio" name="optionsRadios" class="flat-red" id="optionsRadios1" value="option1" checked>
+                                                <input type="radio" name="f8_radio_input" class="flat-red" id="optionsRadios1" value="ya" checked>
                                                 Ya
                                                 </label>
                                             </div>
                                             <div class="radio">
                                                 <label>
-                                                <input type="radio" name="optionsRadios" class="flat-red" id="optionsRadios2" value="option2">
+                                                <input type="radio" name="f8_radio_input" class="flat-red" id="optionsRadios2" value="tidak">
                                                 Tidak
                                                 </label>
                                             </div>
@@ -273,38 +275,38 @@
                                     <td class="text-danger" style="vertical-align:top;" width="5%" align="center">F9</td>
                                     <td style="vertical-align:top;">Bagaimana anda menggambarkan situasi anda saat ini? Jawaban bisa lebih dari satu</td>
                                     <td>
-                                        <div class="form-group">
+                                        <div class="form-group {{ $errors->has('f9_checkbox_input') ? ' has-error' : '' }}">
                                             <div class="checkbox">
                                                 <label>
-                                                <input type="checkbox" class="flat-red">
+                                                <input type="checkbox" class="flat-red" name="f9_checkbox_input[1]" value="1">
                                                 Saya masih belajar/melanjutkan kuliah profesi atau pascasarjana
                                                 </label>
                                             </div>
 
                                             <div class="checkbox">
                                                 <label>
-                                                <input type="checkbox" class="flat-red">
+                                                <input type="checkbox" class="flat-red" name="f9_checkbox_input[2]" value="2">
                                                 Saya menikah
                                                 </label>
                                             </div>
 
                                             <div class="checkbox">
                                                 <label>
-                                                <input type="checkbox" class="flat-red">
+                                                <input type="checkbox" class="flat-red" name="f9_checkbox_input[3]" value="3">
                                                 Saya sibuk dengan keluarga dan anak-anak
                                                 </label>
                                             </div>
 
                                             <div class="checkbox">
                                                 <label>
-                                                <input type="checkbox" class="flat-red">
+                                                <input type="checkbox" class="flat-red" name="f9_checkbox_input[4]" value="4">
                                                 Saya sekarang sedang mencari pekerjaan
                                                 </label>
                                             </div>
 
                                             <div class="checkbox">
                                                 <label>
-                                                <input type="checkbox" class="flat-red">
+                                                <input type="checkbox" class="flat-red" name="f9_checkbox_input[4]" value="4">
                                                 Lainnya
                                                 </label>
                                             </div>
@@ -316,7 +318,7 @@
                                     <td class="text-danger" style="vertical-align:top;" align="center" width="5%">F10</td>
                                     <td width="30%" style="vertical-align:top;">Apakah anda aktif mencari pekerjaan dalam 4 minggu terakhir? <p><i>(Pilihlah Satu Jawaban. KEMUDIAN LANJUT KE f17)</i></p></td>
                                     <td>
-                                        <div class="form-group">
+                                        <div class="form-group {{ $errors->has('f10_select_input') ? ' has-error' : '' }}">
                                             
                                             <div class="col-md-12">
                                                 <select name="f10_select_input" id="f10_select_input" class="form-control">
@@ -336,7 +338,7 @@
                                     <td class="text-danger" style="vertical-align:top;" align="center" width="5%">F11</td>
                                     <td width="30%" style="vertical-align:top;">Apa jenis perusahaan/instansi/institusi tempat anda bekerja sekarang?</td>
                                     <td>
-                                        <div class="form-group">
+                                        <div class="form-group{{ $errors->has('f11_select_input') ? ' has-error' : '' }}">
                                             
                                             <div class="col-md-6">
                                                 <select name="f11_select_input" id="f11_select_input" class="form-control">
@@ -360,7 +362,7 @@
                                     <td class="text-danger" style="vertical-align:top;" align="center" width="5%">F12</td>
                                     <td width="30%" style="vertical-align:top;">Tempat anda bekerja saat ini bergerak di bidang apa? <p><i>(Klasifikasi Baku Lapangan Usaha Indonesia, Kemnakertrans, 2009)</i></p></td>
                                     <td>
-                                        <div class="form-group">
+                                        <div class="form-group{{ $errors->has('f12_select_input') ? ' has-error' : '' }}">
                                             
                                             <div class="col-md-12">
                                                 <select name="f12_select_input" id="f12_select_input" class="form-control select2" style="width : 100%;">
@@ -454,11 +456,6 @@
                                                     <option value="87">Kegiatan badan internasional dan badan ekstra internasional lainnya</option>
                                                 </select>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="input-lainnya-f11">
-                                                    <input type="text" class="form-control" placeholder="Inputkan Jenis Perusahaan">
-                                                </div>
-                                            </div>
                                         </div>
                                     </td>
                                 </tr>
@@ -466,22 +463,22 @@
                                     <td class="text-danger" style="vertical-align:top;" align="center" width="5%">F13</td>
                                     <td width="30%" style="vertical-align:top;">Kira-kira berapa pendapatan anda setiap bulannya? </td>
                                     <td>
-                                        <div class="form-group" >
-                                            <label for="f13_pekerjaan_utama[0]"  class='col-md-3 control-label'>Dari Pekerjaan Utama</label>
+                                        <div class="form-group{{ $errors->has('f13_pekerjaan_utama') ? ' has-error' : '' }}" >
+                                            <label for="f13_pekerjaan_utama"  class='col-md-3 control-label'>Dari Pekerjaan Utama</label>
                                             <div class="col-md-9">
-                                                <input type="number" class="form-control" name="f13_pekerjaan_utama[0]" style="margin-bottom:10px; width:200px;">
+                                                <input type="number" class="form-control" name="f13_pekerjaan_utama" value="1" style="margin-bottom:10px; width:200px;">
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group{{ $errors->has('f13_pekerjaan_lembur') ? ' has-error' : '' }}">
                                             <label for="f13_pekerjaan_utama[1]"  class='col-md-3 control-label'>Dari Lembur dan Tips</label>
                                             <div class="col-md-9">
-                                                <input type="number" class="form-control" name="f13_pekerjaan_utama[1]" style="margin-bottom:10px;width:200px;">
+                                                <input type="number" class="form-control" name="f13_pekerjaan_lembur" value="2" style="margin-bottom:10px;width:200px;">
                                             </div>
                                         </div>
-                                        <div class="form-group" style="margin-bottom:10px;">
+                                        <div class="form-group{{ $errors->has('f13_pekerjaan_lainnya') ? ' has-error' : '' }}" style="margin-bottom:10px;">
                                             <label for="f13_pekerjaan_utama[2]"  class='col-md-3 control-label'>Dari Pekerjaan Utama</label>
                                             <div class="col-md-9">
-                                                <input type="number" class="form-control" name="f13_pekerjaan_utama[2]" style="margin-bottom:10px;width:200px;">
+                                                <input type="number" class="form-control" name="f13_pekerjaan_lainnya" value="3" style="margin-bottom:10px;width:200px;">
                                             </div>
                                         </div>
                                     </td>
@@ -490,7 +487,7 @@
                                     <td class="text-danger" style="vertical-align:top;" align="center" width="5%">F14</td>
                                     <td width="30%" style="vertical-align:top;">Seberapa erat hubungan antara bidang studi dengan pekerjaan anda? </td>
                                     <td>
-                                        <div class="form-group">
+                                        <div class="form-group{{ $errors->has('f14_select_input') ? ' has-error' : '' }}">
                                             
                                             <div class="col-md-12">
                                                 <select name="f14_select_input" id="f14_select_input" class="form-control">
@@ -509,7 +506,7 @@
                                     <td class="text-danger" style="vertical-align:top;" align="center" width="5%">F15</td>
                                     <td width="30%" style="vertical-align:top;">Tingkat pendidikan apa yang paling tepat/sesuai untuk pekerjaan anda saat ini?</td>
                                     <td>
-                                        <div class="form-group">
+                                        <div class="form-group{{ $errors->has('f15_select_input') ? ' has-error' : '' }}">
                                             
                                             <div class="col-md-12">
                                                 <select name="f15_select_input" id="f15_select_input" class="form-control">
@@ -527,94 +524,94 @@
                                     <td class="text-danger" style="vertical-align:top;" width="5%" align="center">F16</td>
                                     <td style="vertical-align:top;">Jika menurut anda pekerjaan anda saat ini tidak sesuai dengan pendidikan anda, mengapa anda mengambilnya? Jawaban bisa lebih dari satu</td>
                                     <td>
-                                        <div class="form-group">
+                                        <div class="form-group{{ $errors->has('f16_checkbox_input') ? ' has-error' : '' }}">
                                             <div class="checkbox">
                                                 <label>
-                                                <input type="checkbox" class="flat-red">
+                                                <input type="checkbox" class="flat-red" name="f16_checkbox_input[1]" value="1">
                                                 Pertanyaan tidak sesuai; pekerjaan saya sekarang sudah sesuai dengan pendidikan saya
                                                 </label>
                                             </div>
 
                                             <div class="checkbox">
                                                 <label>
-                                                <input type="checkbox" class="flat-red">
+                                                <input type="checkbox" class="flat-red" name="f16_checkbox_input[2]" value="2">
                                                 Saya belum mendapatkan pekerjaan yang lebih sesuai
                                                 </label>
                                             </div>
 
                                             <div class="checkbox">
                                                 <label>
-                                                <input type="checkbox" class="flat-red">
+                                                <input type="checkbox" class="flat-red" name="f16_checkbox_input[3]" value="3">
                                                 Di pekerjaan ini saya memeroleh prospek karir yang baik
                                                 </label>
                                             </div>
 
                                             <div class="checkbox">
                                                 <label>
-                                                <input type="checkbox" class="flat-red">
+                                                <input type="checkbox" class="flat-red" name="f16_checkbox_input[4]" value="4">
                                                 Saya lebih suka bekerja di area pekerjaan yang tidak ada hubungannya dengan pendidikan saya
                                                 </label>
                                             </div>
 
                                             <div class="checkbox">
                                                 <label>
-                                                <input type="checkbox" class="flat-red">
+                                                <input type="checkbox" class="flat-red" name="f16_checkbox_input[5]" value="5">
                                                 Saya dipromosikan ke posisi yang kurang berhubungan dengan pendidikan saya dibanding posisi sebelumnya
                                                 </label>
                                             </div>
 
                                             <div class="checkbox">
                                                 <label>
-                                                <input type="checkbox" class="flat-red">
+                                                <input type="checkbox" class="flat-red" name="f16_checkbox_input[6]" value="6">
                                                 Saya dapat memeroleh pendapatan yang lebih tinggi di pekerjaan ini
                                                 </label>
                                             </div>
 
                                             <div class="checkbox">
                                                 <label>
-                                                <input type="checkbox" class="flat-red">
+                                                <input type="checkbox" class="flat-red" name="f16_checkbox_input[7]" value="7">
                                                 Pekerjaan saya saat ini lebih aman/terjamin/secure
                                                 </label>
                                             </div>
 
                                             <div class="checkbox">
                                                 <label>
-                                                <input type="checkbox" class="flat-red">
+                                                <input type="checkbox" class="flat-red" name="f16_checkbox_input[8]" value="8">
                                                 Pekerjaan saya saat ini lebih menarik
                                                 </label>
                                             </div>
 
                                             <div class="checkbox">
                                                 <label>
-                                                <input type="checkbox" class="flat-red">
+                                                <input type="checkbox" class="flat-red" name="f16_checkbox_input[9]" value="8">
                                                 Pekerjaan saya saat ini lebih memungkinkan saya mengambil pekerjaan tambahan/jadwal yang fleksibel, dll
                                                 </label>
                                             </div>
 
                                             <div class="checkbox">
                                                 <label>
-                                                <input type="checkbox" class="flat-red">
+                                                <input type="checkbox" class="flat-red" name="f16_checkbox_input[10]" value="10">
                                                 Pekerjaan saya saat ini lokasinya lebih dekat dari rumah saya
                                                 </label>
                                             </div>
 
                                             <div class="checkbox">
                                                 <label>
-                                                <input type="checkbox" class="flat-red">
+                                                <input type="checkbox" class="flat-red" name="f16_checkbox_input[11]" value="11">
                                                 Pekerjaan saya saat ini dapat lebih menjamin kebutuhan keluarga saya
                                                 </label>
                                             </div>
 
                                             <div class="checkbox">
                                                 <label>
-                                                <input type="checkbox" class="flat-red">
+                                                <input type="checkbox" class="flat-red" name="f16_checkbox_input[12]" value="12">
                                                 Pada awal meniti karir ini, saya harus menerima pekerjaan yang tidak berhubungan dengan pendidikan saya
                                                 </label>
                                             </div>
 
                                             <div class="checkbox">
                                                 <label>
-                                                <input type="checkbox" class="flat-red">
+                                                <input type="checkbox" class="flat-red" name="f16_checkbox_input[13]" value="13">
                                                 Lainnya
                                                 </label>
                                             </div>
@@ -622,7 +619,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="text-danger" style="vertical-align:top;" align="center" width="5%">F15</td>
+                                    <td class="text-danger" style="vertical-align:top;" align="center" width="5%">F17</td>
                                     <td width="30%" style="vertical-align:top;">Pada saat lulus, pada tingkat mana kompetensi di bawah ini anda kuasai? (<b>A</b>) <br /><br /> <p>Pada saat lulus, bagaimana kontribusi perguruan tinggi dalam hal kompetensi di bawah ini? (<b>B</b>)</p> </td>
                                     <td>
                                         <div class="form-group">
@@ -651,112 +648,118 @@
                                                     <tr>
                                                         <td>1</td>
                                                         <td>Pengetahuan di bidang atau disiplin ilmu anda</td>
-                                                        
+                                                        <div class="form-group">
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_1_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_1_a" class="flat-red" value="1">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_1_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_1_a" class="flat-red" value="2">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_1_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_1_a" class="flat-red" value="3">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_1_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_1_a" class="flat-red" value="4">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_1_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_1_a" class="flat-red" value="5">                                                                
+                                                            </div>
+                                                        </td>
+                                                        </div>
+                                                        <div class="form-group">
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_1_b" class="flat-red" value="1">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_1_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_1_b" class="flat-red" value="2">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_1_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_1_b" class="flat-red" value="3">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_1_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_1_b" class="flat-red" value="4">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_1_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_1_b" class="flat-red" value="5">                                                                
                                                             </div>
                                                         </td>
-                                                        <td>
-                                                            <div class="radio">
-                                                                <input type="radio" name="f17_option_1_b" class="flat-red">                                                                
-                                                            </div>
-                                                        </td>
+                                                        </div>
                                                     </tr>
                                                     <tr>
                                                         <td>2</td>
                                                         <td>Pengetahuan di luar bidang atau disiplin ilmu anda</td>
-                                                        
+                                                        <div class="form-group">
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_2_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_2_a" class="flat-red" value="1">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_2_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_2_a" class="flat-red" value="2">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_2_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_2_a" class="flat-red" value="3">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_2_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_2_a" class="flat-red" value="4">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_2_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_2_a" class="flat-red" value="5">                                                                
+                                                            </div>
+                                                        </td>
+                                                        </div>
+                                                        <div class="form-group">
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_2_b" class="flat-red" value="1">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_2_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_2_b" class="flat-red" value="2">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_2_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_2_b" class="flat-red" value="3">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_2_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_2_b" class="flat-red" value="4">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_2_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_2_b" class="flat-red" value="5">                                                                
                                                             </div>
                                                         </td>
-                                                        <td>
-                                                            <div class="radio">
-                                                                <input type="radio" name="f17_option_2_b" class="flat-red">                                                                
-                                                            </div>
-                                                        </td>
+                                                        </div>
                                                     </tr>
                                                     <tr>
                                                         <td>3</td>
@@ -764,52 +767,52 @@
                                                         
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_3_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_3_a" class="flat-red" value="1">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_3_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_3_a" class="flat-red" value="2">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_3_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_3_a" class="flat-red" value="3">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_3_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_3_a" class="flat-red" value="4">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_3_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_3_a" class="flat-red" value="5">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_3_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_3_b" class="flat-red" value="1">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_3_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_3_b" class="flat-red" value="2">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_3_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_3_b" class="flat-red" value="3">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_3_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_3_b" class="flat-red" value="4">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_3_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_3_b" class="flat-red" value="5">                                                                
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -819,52 +822,52 @@
                                                         
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_4_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_4_a" class="flat-red" value="1">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_4_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_4_a" class="flat-red" value="2">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_4_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_4_a" class="flat-red" value="3">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_4_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_4_a" class="flat-red" value="4">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_4_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_4_a" class="flat-red" value="5">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_4_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_4_b" class="flat-red" value="1">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_4_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_4_b" class="flat-red" value="2">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_4_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_4_b" class="flat-red" value="3">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_4_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_4_b" class="flat-red" value="4">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_4_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_4_b" class="flat-red" value="5">                                                                
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -874,52 +877,52 @@
                                                         
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_5_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_5_a" class="flat-red" value="1">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_5_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_5_a" class="flat-red" value="2">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_5_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_5_a" class="flat-red" value="3">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_5_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_5_a" class="flat-red" value="4">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_5_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_5_a" class="flat-red" value="5">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_5_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_5_b" class="flat-red" value="1">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_5_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_5_b" class="flat-red" value="2">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_5_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_5_b" class="flat-red" value="3">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_5_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_5_b" class="flat-red" value="4">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_5_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_5_b" class="flat-red" value="5">                                                                
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -929,52 +932,52 @@
                                                         
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_6_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_6_a" class="flat-red" value="1">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_6_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_6_a" class="flat-red" value="2">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_6_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_6_a" class="flat-red" value="3">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_6_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_6_a" class="flat-red" value="4">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_6_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_6_a" class="flat-red" value="5">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_6_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_6_b" class="flat-red" value="1">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_6_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_6_b" class="flat-red" value="2">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_6_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_6_b" class="flat-red" value="3">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_6_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_6_b" class="flat-red" value="4">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_6_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_6_b" class="flat-red" value="5">                                                                
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -984,52 +987,52 @@
                                                         
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_7_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_7_a" class="flat-red" value="1">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_7_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_7_a" class="flat-red" value="2">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_7_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_7_a" class="flat-red" value="3">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_7_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_7_a" class="flat-red" value="4">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_7_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_7_a" class="flat-red" value="5">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_7_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_7_b" class="flat-red" value="1">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_7_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_7_b" class="flat-red" value="2">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_7_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_7_b" class="flat-red" value="3">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_7_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_7_b" class="flat-red" value="4">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_7_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_7_b" class="flat-red" value="5">                                                                
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -1039,52 +1042,52 @@
                                                         
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_8_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_8_a" class="flat-red" value="1">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_8_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_8_a" class="flat-red" value="2">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_8_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_8_a" class="flat-red" value="3">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_8_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_8_a" class="flat-red" value="4">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_8_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_8_a" class="flat-red" value="5">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_8_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_8_b" class="flat-red" value="1">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_8_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_8_b" class="flat-red" value="2">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_8_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_8_b" class="flat-red" value="3">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_8_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_8_b" class="flat-red" value="4">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_8_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_8_b" class="flat-red" value="5">                                                                
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -1094,52 +1097,52 @@
                                                         
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_9_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_9_a" class="flat-red" value="1">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_9_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_9_a" class="flat-red" value="2">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_9_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_9_a" class="flat-red" value="3">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_9_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_9_a" class="flat-red" value="4">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_9_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_9_a" class="flat-red" value="5">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_9_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_9_b" class="flat-red" value="1">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_9_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_9_b" class="flat-red" value="2">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_9_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_9_b" class="flat-red" value="3">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_9_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_9_b" class="flat-red" value="4">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_9_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_9_b" class="flat-red" value="5">                                                                
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -1149,52 +1152,52 @@
                                                         
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_10_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_10_a" class="flat-red" value="1">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_10_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_10_a" class="flat-red" value="2">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_10_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_10_a" class="flat-red" value="3">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_10_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_10_a" class="flat-red" value="4">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_10_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_10_a" class="flat-red" value="5">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_10_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_10_b" class="flat-red" value="1">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_10_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_10_b" class="flat-red" value="2">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_10_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_10_b" class="flat-red" value="3">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_10_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_10_b" class="flat-red" value="4">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_10_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_10_b" class="flat-red" value="5">                                                                
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -1204,52 +1207,52 @@
                                                         
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_11_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_11_a" class="flat-red" value="1">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_11_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_11_a" class="flat-red" value="2">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_11_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_11_a" class="flat-red" value="3">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_11_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_11_a" class="flat-red" value="4">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_11_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_11_a" class="flat-red" value="5">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_11_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_11_b" class="flat-red" value="1">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_11_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_11_b" class="flat-red" value="2">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_11_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_11_b" class="flat-red" value="3">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_11_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_11_b" class="flat-red" value="4">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_11_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_11_b" class="flat-red" value="5">                                                                
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -1259,52 +1262,52 @@
                                                         
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_12_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_12_a" class="flat-red" value="1">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_12_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_12_a" class="flat-red" value="2">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_12_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_12_a" class="flat-red" value="3">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_12_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_12_a" class="flat-red" value="4">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_12_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_12_a" class="flat-red" value="5">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_12_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_12_b" class="flat-red" value="1">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_12_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_12_b" class="flat-red" value="2">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_12_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_12_b" class="flat-red" value="3">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_12_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_12_b" class="flat-red" value="4">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_12_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_12_b" class="flat-red" value="5">                                                                
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -1314,52 +1317,52 @@
                                                         
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_13_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_13_a" class="flat-red" value="1">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_13_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_13_a" class="flat-red" value="2">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_13_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_13_a" class="flat-red" value="3">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_13_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_13_a" class="flat-red" value="4">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_13_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_13_a" class="flat-red" value="5">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_13_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_13_b" class="flat-red" value="1">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_13_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_13_b" class="flat-red" value="2">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_13_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_13_b" class="flat-red" value="3">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_13_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_13_b" class="flat-red" value="4">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_13_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_13_b" class="flat-red" value="5">                                                                
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -1369,52 +1372,52 @@
                                                         
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_14_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_14_a" class="flat-red" value="1">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_14_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_14_a" class="flat-red" value="2">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_14_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_14_a" class="flat-red" value="3">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_14_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_14_a" class="flat-red" value="4">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_14_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_14_a" class="flat-red" value="5">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_14_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_14_b" class="flat-red" value="1">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_14_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_14_b" class="flat-red" value="2">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_14_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_14_b" class="flat-red" value="3">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_14_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_14_b" class="flat-red" value="4">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_14_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_14_b" class="flat-red" value="5">                                                                
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -1424,52 +1427,52 @@
                                                         
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_15_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_15_a" class="flat-red" value="1">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_15_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_15_a" class="flat-red" value="2">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_15_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_15_a" class="flat-red" value="3">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_15_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_15_a" class="flat-red" value="4">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_15_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_15_a" class="flat-red" value="5">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_15_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_15_b" class="flat-red" value="1">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_15_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_15_b" class="flat-red" value="2">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_15_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_15_b" class="flat-red" value="3">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_15_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_15_b" class="flat-red" value="4">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_15_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_15_b" class="flat-red" value="5">                                                                
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -1479,52 +1482,52 @@
                                                         
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_16_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_16_a" class="flat-red" value="1">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_16_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_16_a" class="flat-red" value="2">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_16_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_16_a" class="flat-red" value="3">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_16_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_16_a" class="flat-red" value="4">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_16_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_16_a" class="flat-red" value="5">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_16_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_16_b" class="flat-red" value="1">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_16_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_16_b" class="flat-red" value="2">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_16_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_16_b" class="flat-red" value="3">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_16_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_16_b" class="flat-red" value="4">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_16_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_16_b" class="flat-red" value="5">                                                                
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -1534,52 +1537,52 @@
                                                         
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_17_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_17_a" class="flat-red" value="1">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_17_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_17_a" class="flat-red" value="2">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_17_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_17_a" class="flat-red" value="3">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_17_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_17_a" class="flat-red" value="4">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_17_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_17_a" class="flat-red" value="5">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_17_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_17_b" class="flat-red" value="1">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_17_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_17_b" class="flat-red" value="2">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_17_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_17_b" class="flat-red" value="3">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_17_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_17_b" class="flat-red" value="4">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_17_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_17_b" class="flat-red" value="5">                                                                
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -1589,52 +1592,712 @@
                                                         
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_18_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_18_a" class="flat-red" value="1">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_18_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_18_a" class="flat-red" value="2">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_18_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_18_a" class="flat-red" value="3">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_18_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_18_a" class="flat-red" value="4">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_18_a" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_18_a" class="flat-red" value="5">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_18_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_18_b" class="flat-red" value="1">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_18_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_18_b" class="flat-red" value="2">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_18_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_18_b" class="flat-red" value="3">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_18_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_18_b" class="flat-red" value="4">                                                                
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="radio">
-                                                                <input type="radio" name="f17_option_18_b" class="flat-red">                                                                
+                                                                <input type="radio" name="f17_option_18_b" class="flat-red" value="5">                                                                
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>19</td>
+                                                        <td>Toleransi</td>
+                                                        
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_19_a" class="flat-red" value="1">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_19_a" class="flat-red" value="2">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_19_a" class="flat-red" value="3">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_19_a" class="flat-red" value="4">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_19_a" class="flat-red" value="5">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_19_b" class="flat-red" value="1">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_19_b" class="flat-red" value="2">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_19_b" class="flat-red" value="3">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_19_b" class="flat-red" value="4">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_19_b" class="flat-red" value="5">                                                                
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>20</td>
+                                                        <td>Kemampuan adaptasi</td>
+                                                        
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_20_a" class="flat-red" value="1">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_20_a" class="flat-red" value="2">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_20_a" class="flat-red" value="3">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_20_a" class="flat-red" value="4">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_20_a" class="flat-red" value="5">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_20_b" class="flat-red" value="1">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_20_b" class="flat-red" value="2">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_20_b" class="flat-red" value="3">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_20_b" class="flat-red" value="4">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_20_b" class="flat-red" value="5">                                                                
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>21</td>
+                                                        <td>Loyalitas</td>
+                                                        
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_21_a" class="flat-red" value="1">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_21_a" class="flat-red" value="2">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_21_a" class="flat-red" value="3">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_21_a" class="flat-red" value="4">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_21_a" class="flat-red" value="5">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_21_b" class="flat-red" value="1">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_21_b" class="flat-red" value="2">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_21_b" class="flat-red" value="3">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_21_b" class="flat-red" value="4">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_21_b" class="flat-red" value="5">                                                                
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>22</td>
+                                                        <td>Integritas</td>
+                                                        
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_22_a" class="flat-red" value="1">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_22_a" class="flat-red" value="2">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_22_a" class="flat-red" value="3">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_22_a" class="flat-red" value="4">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_22_a" class="flat-red" value="5">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_22_b" class="flat-red" value="1">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_22_b" class="flat-red" value="2">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_22_b" class="flat-red" value="3">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_22_b" class="flat-red" value="4">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_22_b" class="flat-red" value="5">                                                                
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>23</td>
+                                                        <td>Bekerja dengan orang yang berbeda budaya maupun latar belakang</td>
+                                                        
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_23_a" class="flat-red" value="1">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_23_a" class="flat-red" value="2">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_23_a" class="flat-red" value="3">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_23_a" class="flat-red" value="4">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_23_a" class="flat-red" value="5">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_23_b" class="flat-red" value="1">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_23_b" class="flat-red" value="2">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_23_b" class="flat-red" value="3">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_23_b" class="flat-red" value="4">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_23_b" class="flat-red" value="5">                                                                
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>24</td>
+                                                        <td>Kepemimpinan</td>
+                                                        
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_24_a" class="flat-red" value="1">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_24_a" class="flat-red" value="2">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_24_a" class="flat-red" value="3">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_24_a" class="flat-red" value="4">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_24_a" class="flat-red" value="5">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_24_b" class="flat-red" value="1">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_24_b" class="flat-red" value="2">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_24_b" class="flat-red" value="3">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_24_b" class="flat-red" value="4">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_24_b" class="flat-red" value="5">                                                                
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>25</td>
+                                                        <td>Kemampuan dalam memegang tanggungjawab</td>
+                                                        
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_25_a" class="flat-red" value="1">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_25_a" class="flat-red" value="2">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_25_a" class="flat-red" value="3">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_25_a" class="flat-red" value="4">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_25_a" class="flat-red" value="5">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_25_b" class="flat-red" value="1">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_25_b" class="flat-red" value="2">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_25_b" class="flat-red" value="3">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_25_b" class="flat-red" value="4">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_25_b" class="flat-red" value="5">                                                                
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>26</td>
+                                                        <td>Inisiatif</td>
+                                                        
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_26_a" class="flat-red" value="1">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_26_a" class="flat-red" value="2">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_26_a" class="flat-red" value="3">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_26_a" class="flat-red" value="4">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_26_a" class="flat-red" value="5">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_26_b" class="flat-red" value="1">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_26_b" class="flat-red" value="2">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_26_b" class="flat-red" value="3">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_26_b" class="flat-red" value="4">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_26_b" class="flat-red" value="5">                                                                
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>27</td>
+                                                        <td>Manajemen proyek/program</td>
+                                                        
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_27_a" class="flat-red" value="1">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_27_a" class="flat-red" value="2">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_27_a" class="flat-red" value="3">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_27_a" class="flat-red" value="4">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_27_a" class="flat-red" value="5">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_27_b" class="flat-red" value="1">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_27_b" class="flat-red" value="2">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_27_b" class="flat-red" value="3">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_27_b" class="flat-red" value="4">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_27_b" class="flat-red" value="5">                                                                
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>28</td>
+                                                        <td>Kemampuan untuk memresentasikan ide/produk/laporan</td>
+                                                        
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_28_a" class="flat-red" value="1">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_28_a" class="flat-red" value="2">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_28_a" class="flat-red" value="3">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_28_a" class="flat-red" value="4">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_28_a" class="flat-red" value="5">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_28_b" class="flat-red" value="1">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_28_b" class="flat-red" value="2">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_28_b" class="flat-red" value="3">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_28_b" class="flat-red" value="4">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_28_b" class="flat-red" value="5">                                                                
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>29</td>
+                                                        <td>Kemampuan dalam menulis laporan, memo dan dokumen</td>
+                                                        
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_29_a" class="flat-red" value="1">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_29_a" class="flat-red" value="2">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_29_a" class="flat-red" value="3">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_29_a" class="flat-red" value="4">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_29_a" class="flat-red" value="5">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_29_b" class="flat-red" value="1">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_29_b" class="flat-red" value="2">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_29_b" class="flat-red" value="3">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_29_b" class="flat-red" value="4">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_29_b" class="flat-red" value="5">                                                                
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>30</td>
+                                                        <td>Kemampuan untuk terus belajar sepanjang hayat</td>
+                                                        
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_30_a" class="flat-red" value="1">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_30_a" class="flat-red" value="2">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_30_a" class="flat-red" value="3">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_30_a" class="flat-red" value="4">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_30_a" class="flat-red" value="5">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_30_b" class="flat-red" value="1">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_30_b" class="flat-red" value="2">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_30_b" class="flat-red" value="3">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_30_b" class="flat-red" value="4">                                                                
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="radio">
+                                                                <input type="radio" name="f17_option_30_b" class="flat-red" value="5">                                                                
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -1644,6 +2307,16 @@
                                     </td>
                                 </tr>
                             </table>
+                        </div>
+
+                        <div class="panel-footer">
+                            <div class="row">
+                                <div class="form-group">    
+                                    <div class="pull-right">
+                                        <input type="submit" class="btn btn-primary btn-sm" style="margin:20px;" value="Submit">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </form>
                     

@@ -51,11 +51,11 @@
 			<div class="navbar-collapse collapse">
 				
 				<ul class="nav navbar-nav">
-					<li><a href="index.php">Beranda</a></li>
+					<li><a href="welcome.blade.php">Beranda</a></li>
 					<li><a href="report.php">Daftar Alumni</a></li>
-					<li class="active"><a href="about.php">About</a></li>
+					<li class="active"><a href="about.php">Tentang</a></li>
 					</li>
-					<li><a href="contact.php">Contact</a></li>
+					<li><a href="contact.php">Kontak</a></li>
 				</ul>
 			
 			</div><!--/.nav-collapse -->			
@@ -91,7 +91,7 @@
                                 <h2 class="text-center">Sign in to start your session</h2>
                                 <hr class="colorgraph">
                                 <div class="form-group">
-                                    <input type="text" name="email" id="user" class="form-control input-lg" placeholder="Username">
+                                    <input type="text" name="email" id="user" class="form-control input-lg" placeholder="Email">
                                 </div>
                                 <div class="form-group">
                                     <input type="password" name="password" id="user" class="form-control input-lg" placeholder="Password">
@@ -108,7 +108,7 @@
                                             </script>
                                     </div>
                                     <div class="col-xs-6 col-sm-6 col-md-6">
-                                        <a href="register.php" class="btn btn-lg btn-primary btn-block">Sign Up</a>
+                                        <a href="{{url('/reg-alumni')}}" class="btn btn-lg btn-primary btn-block">Sign Up</a>
                                     </div>
                                 </div>
                             </fieldset>

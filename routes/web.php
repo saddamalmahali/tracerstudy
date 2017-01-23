@@ -46,4 +46,7 @@ Route::group(['middleware' => ['tracer']], function () {
     Route::get('/alumni/home', 'AlumniController@index');
 	//Menu Tracer
     Route::get('/alumni/tracer', 'AlumniController@index_tracer');
+
+    //Submit Form Quesioner
+    Route::post('/alumni/submit_form_tracer', 'AlumniController@input_tracer');
 });

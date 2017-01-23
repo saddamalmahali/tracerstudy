@@ -2,8 +2,7 @@
 
 @section('content')
     <section class="content-header">
-        <h1>
-            Halaman Alumni 
+        <h1> 
             <p><small>Data Alumni</small></p>
             
         </h1>
