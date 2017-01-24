@@ -60,7 +60,7 @@
                 <div class="col-md-6 widget">
                     <div class="widget-body">
                         <p class="text-right">
-                            Copyright &copy; 2016, Alfi S M  & Intania Sintiani </p>
+                            Copyright &copy; {{date('Y')}}, Alfi S M  & Intania Sintiani </p>
                     </div>
                 </div>
 

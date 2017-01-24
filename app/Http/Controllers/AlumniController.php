@@ -81,7 +81,19 @@ class AlumniController extends Controller
             }
 
             if($alumni->save()){
-                return redirect('/login-alumni');
+                $auth = auth()->guard('tracer'); // Atau \Auth::guard('doctor')
+ 
+                $credentials = [
+                    'email' =>  $alumni->email, // Nomor Induk Pegawai
+                    'password' =>  $request->input('password'),
+                ];
+
+
+            
+                if ($auth->attempt($credentials)) {
+                    return redirect('/alumni/home');
+                }
+                //return redirect('/login-alumni');
             }else{
                 return "Gagal Register";
             }

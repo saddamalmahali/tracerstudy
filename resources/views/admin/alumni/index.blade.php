@@ -29,6 +29,7 @@
                                     <th style="text-align:center; width:20%;">Email</th>
                                     <th style="text-align:center; ">Tahun Lulus</th>
                                     <th style="text-align:center; ">Jurusan</th>
+                                    <th style="text-align:center; ">Isi <bt />Quesioner</th>
                                     <th style="text-align:center; width:10%;">Opsi</th>
                                 </tr>
                             </thead>
@@ -66,6 +67,7 @@
                                                 }
                                             ?>
                                         </span></td>
+                                        <td></td>
                                         <td align="center">
                                             <a href="{{url('/admin/alumni/view').'/'.$alumni->id}}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></a>
                                             <a href="{{url('/admin/alumni/update').'/'.$alumni->id}}" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i></a>

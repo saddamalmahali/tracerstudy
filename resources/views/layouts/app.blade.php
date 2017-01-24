@@ -49,6 +49,8 @@
 
   <!-- Select2 -->
   <script src="{{url('plugins/select2/select2.full.js')}}"></script>
+  <!-- ChartJS -->
+  <script src="{{url('plugins/chartjs/Chart.js')}}"></script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -154,7 +156,7 @@
     <div class="pull-right hidden-xs">
       <b>Version</b> 2.3.8
     </div>
-    <strong>Copyright &copy; 2014-2016 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
+    <strong>Copyright &copy; {{date('Y')}}} Alfi S M & Intania Sintiani All rights
     reserved.
   </footer>
 

@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+
 
 //Route Menu Alumni
 
@@ -34,6 +34,10 @@ Route::post('/alumni/save_register', 'AlumniController@simpan_alumni');
 
 Route::group(['middleware'=>['web']], function(){
     
+    //Dasboard Admin
+    Route::get('/home', 'HomeController@index');
+    Route::post('/get_data_chart', 'HomeController@get_data_chart');
+
     //Menu Alumni
     Route::get('/admin/alumni', 'AdminController@index_alumni');
     Route::get('/admin/alumni/tambah', 'AdminController@tambah_alumni');
