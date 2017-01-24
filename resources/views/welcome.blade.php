@@ -1,72 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport"    content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="">
-	<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)">
-	<meta name="csrf-token" content="{{ csrf_token() }}">
-	<title>STTG-Tracer Study</title>
+@extends('layouts.home')
 
-	<link rel="shortcut icon" href="assets/images/sttg.png">
-	
-	<!-- Bootstrap -->
-	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
-	<!-- Icons -->
-	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-	<!-- Fonts -->
-	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
-	
-	<!-- Bootstrap 3.3.6 -->
-    <link rel="stylesheet" href="{{url('bootstrap/css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{url('tracer/css/styles.css')}}">
-	<link rel="stylesheet" href="{{url('tracer/css/jquery.jgrowl.min.css')}}">
-
-	<!--[if lt IE 9]> <script src="assets/js/html5shiv.js"></script> <![endif]-->
-
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-	<!-- jQuery 2.2.3 -->
-    <script src="{{url('plugins/jQuery/jquery-2.2.3.min.js')}}"></script>
-</head>
-
-<header id="header">
-	<div id="head" class="parallax" parallax-speed="2">
-		<h1 id="logo" class="text-center">
-			<img class="img-circle" src="{{url('tracer/images/sttg.jpg')}}" alt="">
-			<span class="title">TRACER STUDY STTG</span>
-			<span class="tagline">SEKOLAH TINGGI TEKNOLOGI GARUT</span>
-			<span class="tagline">JL.Mayor Syamsu No.1 Jayaraga Tarogong Kidul - Garut 44151<br>
-				<a href="http://www.sttgarut.ac.id">www.sttgarut.ac.id</a></span>
-		</h1>
-	</div>
-
-	<nav class="navbar navbar-default navbar-sticky">
-		<div class="container-fluid">
-			
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-			</div>
-			
-			<div class="navbar-collapse collapse">
-				
-				<ul class="nav navbar-nav">
-					<li><a href="welcome.blade.php">Beranda</a></li>
-					<li><a href="report.php">Daftar Alumni</a></li>
-					<li class="active"><a href="about.php">Tentang</a></li>
-					</li>
-					<li><a href="contact.php">Kontak</a></li>
-				</ul>
-			
-			</div><!--/.nav-collapse -->			
-		</div>	
-	</nav>
-</header>
-
-
-
-
-<body id="signin">
+@section('content')
     <div class="row section featured topspace">
         <div class="container">
             <div class="row">
@@ -109,12 +43,7 @@
                                         <div class="row">
                                             <div class="col-xs-6 col-sm-6 col-md-6">
                                                 <input type="submit" name="signin" id="signin" class="btn btn-lg btn-success btn-block" value="Sign In" tabindex="3">
-                                                    <script type="text/javascript">
-                                                        $(document).ready(function(){
-                                                            $('#signin').tooltip('show');
-                                                            $('#signin').tooltip('hide');
-                                                        });
-                                                    </script>
+                                                    
                                             </div>
                                             <div class="col-xs-6 col-sm-6 col-md-6">
                                                 <a href="{{url('/reg-alumni')}}" class="btn btn-lg btn-primary btn-block">Sign Up</a>
@@ -214,5 +143,4 @@
         </div>
     </footer>
     <script src="{{url('tracer/js/template.js')}}"></script>
-</body>
-</html>
+@endsection

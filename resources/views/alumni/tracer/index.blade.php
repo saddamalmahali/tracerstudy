@@ -476,7 +476,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group{{ $errors->has('f13_pekerjaan_lainnya') ? ' has-error' : '' }}" style="margin-bottom:10px;">
-                                            <label for="f13_pekerjaan_utama[2]"  class='col-md-3 control-label'>Dari Pekerjaan Utama</label>
+                                            <label for="f13_pekerjaan_utama[2]"  class='col-md-3 control-label'>Dari Pekerjaan Lainnya</label>
                                             <div class="col-md-9">
                                                 <input type="number" class="form-control" name="f13_pekerjaan_lainnya" value="3" style="margin-bottom:10px;width:200px;">
                                             </div>
