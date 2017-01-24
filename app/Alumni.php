@@ -29,4 +29,24 @@ class Alumni extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function status($email)
+    {
+        $tracer = Tracer::select('email')->where('email', '=',$email)->first();
+        if($tracer != null){
+            return "Sudah Mengisi";
+        }else{
+            return "Belum Mengisi";
+        }
+    }
+
+    public function cek_status($email)
+    {
+        $tracer = Tracer::select('email')->where('email', '=',$email)->first();
+        if($tracer != null){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

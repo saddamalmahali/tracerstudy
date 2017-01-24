@@ -9,7 +9,7 @@
 				
 				<ul class="nav navbar-nav">
 					<li><a href="{{url('/')}}">Beranda</a></li>
-					<li><a href="{{url('/reg-alumni')}}">Daftar Alumni</a></li>
+					<li><a href="{{url('/daftar-alumni')}}">Daftar Alumni</a></li>
 					<li class="active"><a href="about.php">Tentang</a></li>
 					</li>
 					<li><a href="contact.php">Kontak</a></li>

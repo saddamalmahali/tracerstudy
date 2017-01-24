@@ -115,7 +115,10 @@ class AlumniController extends Controller
 
     public function daftar_alumni()
     {
-        return view('');
+        $alumni = new Alumni();
+
+        $alumni = $alumni->paginate('8');
+        return view('alumni.daftar_alumni', ['data_alumni'=>$alumni]);
     }
 
     public function index_tracer()
@@ -472,5 +475,6 @@ class AlumniController extends Controller
         }
         
     }
+
 }
     

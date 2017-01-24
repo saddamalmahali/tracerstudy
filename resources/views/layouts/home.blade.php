@@ -56,5 +56,7 @@
 
 <body id="signin">
     @yield('content')
+
+	@include('layouts.footer_home')
 </body>
 </html>

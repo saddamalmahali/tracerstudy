@@ -69,8 +69,6 @@
                                     </span>
                                 @endif
                             </div>
-                        </div>
-                        <div class="col-md-6">
                             <div class="form-group has-feedback{{ $errors->has('tahun_lulus') ? ' has-error' : '' }}">
                                 <input type="number" class="form-control" name="tahun_lulus" placeholder="Tahun Lulus">  
                                 @if ($errors->has('tahun_lulus'))
@@ -79,14 +77,10 @@
                                     </span>
                                 @endif      
                             </div>
-                            <div class="form-group has-feedback{{ $errors->has('alamat') ? ' has-error' : '' }}">
-                                <textarea class="form-control" placeholder="Alamat" name="alamat"></textarea>
-                                @if ($errors->has('alamat'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('alamat') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            
+                            
                             <div class="form-group has-feedback{{ $errors->has('no_hp') ? ' has-error' : '' }}">
                                 <input type="text" class="form-control" placeholder="No HP" name="no_hp">
                                 <span class="glyphicon glyphicon-phone form-control-feedback"></span>
@@ -97,7 +91,6 @@
                                 @endif
                             </div>
                             <div class="form-group {{ $errors->has('foto') ? ' has-error' : '' }}">
-                                <label for="foto">Foto</label>
                                     <div class="input-group date">
                                         <input type="file" name="foto" class="form-control">
                                         <div class="input-group-addon">
@@ -125,6 +118,14 @@
                                 @if ($errors->has('password'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="form-group has-feedback{{ $errors->has('alamat') ? ' has-error' : '' }}">
+                                <textarea class="form-control" placeholder="Alamat" name="alamat" rows="4"></textarea>
+                                @if ($errors->has('alamat'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('alamat') }}</strong>
                                     </span>
                                 @endif
                             </div>
