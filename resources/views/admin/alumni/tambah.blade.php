@@ -15,7 +15,7 @@
             <div class="col-md-8">
                 <div class="box box-primary">
                     <div class="box-header">
-                        <h3 class="box-title">FORM TAMBAH ANGGOTA</h3>
+                        <h3 class="box-title">FORM TAMBAH ALUMNI</h3>
                     </div>
                     <form action="{{url('admin/alumni/save')}}" method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}

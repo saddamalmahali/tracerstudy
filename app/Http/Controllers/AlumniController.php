@@ -109,6 +109,10 @@ class AlumniController extends Controller
             $alumni->angkatan = $request->input('tahun_lulus');
             $alumni->alamat = $request->input('alamat');
 
+            if($request->input('password')!= null){
+                $alumni->password = bcrypt($request->input('password'));
+            }
+
             if ($request->file('foto') != null) {
                 $destinationPath = 'img'; // upload path
                 $extension = $request->file('foto')->getClientOriginalExtension(); // getting image extension

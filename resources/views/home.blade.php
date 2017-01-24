@@ -3,7 +3,7 @@
 @section('content')
 <div class="content-header">
     <h1>
-        Dasboard
+        Dashboard
     </h1>
 </div>
 
@@ -36,7 +36,7 @@
                     <i class="ion ion-android-list"></i>
                 </div>
 
-                <a href="{{url('/admin/user_admin')}}" class="small-box-footer">
+                <a href="#" class="small-box-footer">
                     Lihat Data
                     <i class="fa fa-arrow-circle-right"></i>
                 </a>

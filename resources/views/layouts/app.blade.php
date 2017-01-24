@@ -125,9 +125,6 @@
               </li>
               <!-- Menu Footer-->
               <li class="user-footer">
-                <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
-                </div>
                 <div class="pull-right">
                   <a href="{{ url('/logout') }}" class="btn btn-default btn-flat" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">Sign out</a>
@@ -153,10 +150,8 @@
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 2.3.8
-    </div>
-    <strong>Copyright &copy; {{date('Y')}}} Alfi S M & Intania Sintiani All rights
+    
+    <strong>Copyright &copy; {{date('Y')}} Alfi S M & Intania Sintiani All rights
     reserved.
   </footer>
 
