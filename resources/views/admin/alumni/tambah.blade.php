@@ -17,7 +17,7 @@
                     <div class="box-header">
                         <h3 class="box-title">FORM TAMBAH ANGGOTA</h3>
                     </div>
-                    <form action="{{url('admin/alumni/save')}}" method="post">
+                    <form action="{{url('admin/alumni/save')}}" method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="box-body">                        
                             <div class="row">
@@ -31,8 +31,8 @@
                                             </span>
                                         @endif
                                     </div>
-                                    <div class="form-group {{ $errors->has('nama_depan') ? ' has-error' : '' }}">
-                                        <label for="nama_depan">Nama Belakang</label>
+                                    <div class="form-group {{ $errors->has('nama_belakang') ? ' has-error' : '' }}">
+                                        <label for="nama_belakang">Nama Belakang</label>
                                         <input type="text" name="nama_belakang" class="form-control" placeholder="Input Nama Belakang">
                                         @if ($errors->has('nama_belakang'))
                                             <span class="help-block">
@@ -76,15 +76,30 @@
                                             </span>
                                         @endif
                                     </div>
+                                    <div class="form-group {{ $errors->has('no_hp') ? ' has-error' : '' }}">
+                                        <label for="no_hp">No HP</label>
+                                        <div class="input-group date">
+                                            <input type="text" name="no_hp" class="form-control" placeholder="Input No HP">
+                                            <div class="input-group-addon">
+                                                <span class="fa fa-mobile"></span>
+                                            </div>
+                                        </div>
+                                        @if ($errors->has('no_hp'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('no_hp') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
                                     <div class="form-group {{ $errors->has('jurusan') ? ' has-error' : '' }}">
-                                        <label for="angkatan">Jurusan</label>
+                                        <label for="jurusan">Jurusan</label>
                                         <select name="jurusan" class="form-control">
                                             <option value="" disabled selected>Pilih Jurusan</option>
-                                            <option value="tinf">Teknik Informatika</option>
-                                            <option value="tind">Teknik Industri</option>
-                                            <option value="tk">Teknik Komputer</option>
-                                            <option value="ts">Teknik Sipil</option>
-                                            <option value="arsitek">Arsitek</option>
+                                            <option value="23201">Arsitektur (S1)</option>
+                                            <option value="26201">Teknik Industri (S1)</option>
+                                            <option value="55201">Teknik Informatika (S1)</option>
+                                            <option value="22201">Teknik Sipil (S1)</option>
+                                            <option value="56401">Teknik Komputer (D3)</option>
+                                            <option value="26402">Manajemen Industri (D3)</option>
                                         </select>
                                         @if ($errors->has('jurusan'))
                                             <span class="help-block">
@@ -94,12 +109,12 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group {{ $errors->has('angkatan') ? ' has-error' : '' }}">
-                                        <label for="angkatan">Angkatan</label>
-                                        <input type="text" name="angkatan" class="form-control" placeholder="Tahun Angkatan">
-                                        @if ($errors->has('angkatan'))
+                                    <div class="form-group {{ $errors->has('tahun_lulus') ? ' has-error' : '' }}">
+                                        <label for="tahun_lulus">Tahun Lulus</label>
+                                        <input type="text" name="tahun_lulus" class="form-control" placeholder="Tahun Angkatan">
+                                        @if ($errors->has('tahun_lulus'))
                                             <span class="help-block">
-                                                <strong>{{ $errors->first('angkatan') }}</strong>
+                                                <strong>{{ $errors->first('tahun_lulus') }}</strong>
                                             </span>
                                         @endif
                                     </div>
@@ -113,6 +128,20 @@
                                             </span>
                                         @endif
                                     </div>
+                                    <div class="form-group {{ $errors->has('foto') ? ' has-error' : '' }}">
+                                        <label for="foto">Foto</label>
+                                        <div class="input-group date">
+                                            <input type="file" name="foto" class="form-control">
+                                            <div class="input-group-addon">
+                                                <span class="fa fa-camera-retro"></span>
+                                            </div>
+                                        </div>
+                                        @if ($errors->has('foto'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('foto') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
                                     <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
                                         <label for="email">Email</label>
                                         <div class="input-group date">
@@ -123,7 +152,7 @@
                                         </div>
                                         @if ($errors->has('email'))
                                             <span class="help-block">
-                                                <strong>{{ $errors->first('alamat') }}</strong>
+                                                <strong>{{ $errors->first('email') }}</strong>
                                             </span>
                                         @endif
                                     </div>

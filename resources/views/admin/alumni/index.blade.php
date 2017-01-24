@@ -27,7 +27,7 @@
                                     <th style="text-align:center; width:20%;">Nama</th>
                                     <th style="text-align:center; width:15%;">Tpt/Tanggal Lahir</th>
                                     <th style="text-align:center; width:20%;">Email</th>
-                                    <th style="text-align:center; ">Angkatan</th>
+                                    <th style="text-align:center; ">Tahun Lulus</th>
                                     <th style="text-align:center; ">Jurusan</th>
                                     <th style="text-align:center; width:10%;">Opsi</th>
                                 </tr>
@@ -40,25 +40,27 @@
                                         <td>{{$alumni->nama_depan." ".$alumni->nama_belakang}}</td>
                                         <td align="center">{{$alumni->tempat_lahir.', '.date('d-m-Y', strtotime($alumni->tanggal_lahir))}}</td>
                                         <td align="center">{{$alumni->email}}</td>
-                                        <td align="center">{{$alumni->angkatan}}</td>
+                                        <td align="center">{{$alumni->tahun_lulus}}</td>
                                         <td align="center"><span class="label label-primary">
                                             <?php 
                                                 switch($alumni->jurusan){
-                                                    case "tinf" : 
-                                                        echo "Teknik Informatika";
+                                                    case "55201" : 
+                                                        echo "Teknik Informatika (S1)";
                                                         break;
-                                                    case "tind" : 
-                                                        echo "Teknik Industri";
+                                                    case "26201" : 
+                                                        echo "Teknik Industri (S1)";
                                                         break;
-                                                    case "tk" : 
-                                                        echo "Teknik Komputer";
+                                                    case "56401" : 
+                                                        echo "Teknik Komputer (D3)";
                                                         break;
-                                                    case "ts" : 
-                                                        echo "Teknik Sipil";
+                                                    case "22201" : 
+                                                        echo "Teknik Sipil (S1)";
                                                         break;
-                                                    case "arsitek" : 
-                                                        echo "Arsitek";
+                                                    case "23201" : 
+                                                        echo "Arsitektur (S1)";
                                                         break;
+                                                    case "26402" :
+                                                        echo "Manajemen Industri (D3)";
                                                     default :
                                                         echo "lain-lain";
                                                 }

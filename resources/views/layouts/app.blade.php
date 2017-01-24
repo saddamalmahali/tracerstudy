@@ -55,7 +55,13 @@
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="{{url('/home')}}" class="logo">
+    @if(Auth::guard('tracer')->check())
+        <a href="{{url('/alumni/home')}}" class="logo">
+    @endif
+
+    @if(Auth::guard('web')->check())
+        <a href="{{url('/home')}}" class="logo">
+    @endif
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>T</b>ST</span>
       <!-- logo for regular state and mobile devices -->
@@ -74,7 +80,14 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="{{url('img/userprofil.png')}}" class="user-image" alt="User Image">
+              @if(auth('tracer')->check())
+                <img src="{{auth('tracer')->user()->foto == null ? url('img/userprofil.png') : url('img').'/'.auth('tracer')->user()->foto}}" class="user-image" alt="User Image">
+              @endif
+
+              @if(auth('web')->check())
+                <img src="{{auth('web')->user()->foto == null ? url('img/userprofil.png') : url('img').'/'.auth('web')->user()->foto}}" class="user-image" alt="User Image">
+              @endif
+
               <span class="hidden-xs">
                 @if(auth('tracer')->check())
                   {{auth('tracer')->user()->nama_depan.' '.auth('tracer')->user()->nama_belakang}}
@@ -86,7 +99,13 @@
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="{{url('img/userprofil.png')}}" class="img-circle" alt="User Image">
+                @if(auth('tracer')->check())
+                    <img src="{{auth('tracer')->user()->foto == null ? url('img/userprofil.png') : url('img').'/'.auth('tracer')->user()->foto}}" class="img-circle" alt="User Image">
+                @endif
+
+                @if(auth('web')->check())
+                    <img src="{{auth('web')->user()->foto == null ? url('img/userprofil.png') : url('img').'/'.auth('web')->user()->foto}}" class="img-circle" alt="User Image">
+                @endif
 
                 <p>
                   @if(auth('tracer')->check())

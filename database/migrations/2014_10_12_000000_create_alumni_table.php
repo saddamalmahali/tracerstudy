@@ -25,8 +25,9 @@ class CreateAlumniTable extends Migration
             $table->string('kode_kampus')->default('043051');
             $table->enum('jurusan', ['23201', '26201', '55201', '22201', '56401', '26402']);
             $table->integer('tahun_lulus')->length(4);
-            $table->string('no_hp')->length(20)->nullable();            
-            $table->text('alamat');
+            $table->string('no_hp')->length(20)->nullable();         
+            $table->string('foto')->nullable();   
+            $table->text('alamat')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

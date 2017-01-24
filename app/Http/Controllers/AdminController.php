@@ -37,14 +37,13 @@ class AdminController extends Controller
 
         $this->validate($request, [
             'nama_depan' => 'required|max:50',
-            'nama_belakang' => 'required|max:50',
-            
+            'nama_belakang' => 'required|max:50',            
             'jenis_kelamin'=>'required',
             'tempat_lahir'=>'required',
             'tanggal_lahir'=>'required',
-            'jurusan'=>'required',
-            'angkatan'=>'required',
-            'alamat'=>'required'
+            'tahun_lulus'=>'required',
+            'alamat'=>'required',
+            'no_hp'=>'required'
         ]);
 
         $id_alumni = $request->input('id');
@@ -65,8 +64,17 @@ class AdminController extends Controller
             $alumni->tempat_lahir = $request->input('tempat_lahir');
             $alumni->tanggal_lahir = date('Y-m-d', strtotime($request->input('tanggal_lahir')));
             $alumni->jurusan = $request->input('jurusan');
-            $alumni->angkatan = $request->input('angkatan');
+            $alumni->tahun_lulus = $request->input('tahun_lulus');
             $alumni->alamat = $request->input('alamat');
+            $alumni->no_hp = $request->input('no_hp');
+
+            if ($request->file('foto') != null) {
+                $destinationPath = 'img'; // upload path
+                $extension = $request->file('foto')->getClientOriginalExtension(); // getting image extension
+                $fileName = rand(11111,99999).'.'.$extension; // renameing image
+                $request->file('foto')->move($destinationPath, $fileName); // uploading file to given path
+                $alumni->foto = $fileName;
+            }
 
             if($alumni->save()){
                 return redirect('/admin/alumni');
@@ -74,6 +82,7 @@ class AdminController extends Controller
                 return "Gagal Register";
             }
         }else{
+
             $alumni = Alumni::find($id_alumni);
             $alumni->nama_depan = $request->input('nama_depan');
             $alumni->nama_belakang = $request->input('nama_belakang');
@@ -81,8 +90,21 @@ class AdminController extends Controller
             $alumni->tempat_lahir = $request->input('tempat_lahir');
             $alumni->tanggal_lahir = date('Y-m-d', strtotime($request->input('tanggal_lahir')));
             $alumni->jurusan = $request->input('jurusan');
-            $alumni->angkatan = $request->input('angkatan');
+            $alumni->tahun_lulus = $request->input('tahun_lulus');
             $alumni->alamat = $request->input('alamat');
+            $alumni->no_hp = $request->input('no_hp');
+            
+            if ($request->file('foto') != null) {
+                $destinationPath = 'img'; // upload path
+                $extension = $request->file('foto')->getClientOriginalExtension(); // getting image extension
+                $fileName = rand(11111,99999).'.'.$extension; // renameing image
+                $request->file('foto')->move($destinationPath, $fileName); // uploading file to given path
+                $alumni->foto = $fileName;
+            }
+
+            if($request->input('password') != ''){
+                $alumni->password = bcrypt($request->input('password'));
+            }
 
             if($alumni->save()){
                 return redirect('/admin/alumni');

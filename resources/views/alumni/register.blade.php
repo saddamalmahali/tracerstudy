@@ -37,7 +37,7 @@
   <div class="register-box-body" style="width:100%;">
     <p class="login-box-msg">Register a new membership</p>
 
-    <form action="{{url('/alumni/save_register')}}" method="post">
+    <form action="{{url('/alumni/save_register')}}" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
       <div class="form-group has-feedback{{ $errors->has('nama_depan') ? ' has-error' : '' }}">
         <input type="text" class="form-control" name="nama_depan" placeholder="Nama Depan">
@@ -126,6 +126,20 @@
             </span>
         @endif
       </div>
+      <div class="form-group {{ $errors->has('foto') ? ' has-error' : '' }}">
+        <label for="foto">Foto</label>
+            <div class="input-group date">
+                <input type="file" name="foto" class="form-control">
+                <div class="input-group-addon">
+                    <span class="fa fa-camera-retro"></span>
+                </div>
+            </div>
+            @if ($errors->has('foto'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('foto') }}</strong>
+                </span>
+            @endif
+        </div>
       <div class="form-group has-feedback{{ $errors->has('email') ? ' has-error' : '' }}">
         <input type="email" class="form-control" placeholder="Email" name="email">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>

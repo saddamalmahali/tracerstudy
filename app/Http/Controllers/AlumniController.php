@@ -72,6 +72,14 @@ class AlumniController extends Controller
             $alumni->tahun_lulus = $request->input('tahun_lulus');
             $alumni->alamat = $request->input('alamat');
 
+            if ($request->file('foto') != null) {
+                $destinationPath = 'img'; // upload path
+                $extension = $request->file('foto')->getClientOriginalExtension(); // getting image extension
+                $fileName = rand(11111,99999).'.'.$extension; // renameing image
+                $request->file('foto')->move($destinationPath, $fileName); // uploading file to given path
+                $alumni->foto = $fileName;
+            }
+
             if($alumni->save()){
                 return redirect('/login-alumni');
             }else{
@@ -88,6 +96,14 @@ class AlumniController extends Controller
             $alumni->no_hp = $request->input('no_hp');
             $alumni->angkatan = $request->input('tahun_lulus');
             $alumni->alamat = $request->input('alamat');
+
+            if ($request->file('foto') != null) {
+                $destinationPath = 'img'; // upload path
+                $extension = $request->file('foto')->getClientOriginalExtension(); // getting image extension
+                $fileName = rand(11111,99999).'.'.$extension; // renameing image
+                $request->file('foto')->move($destinationPath, $fileName); // uploading file to given path
+                $alumni->foto = $fileName;
+            }
 
             if($alumni->save()){
                 return redirect('/login-alumni');
@@ -129,7 +145,7 @@ class AlumniController extends Controller
             'f7_select_input'=>'required',
             'f7a_input_text'=>'required',
             'f7a_select_input'=>'required',
-            // 'f8_radio_input'=>'required',
+            'f8_radio_input'=>'required',
             // 'f9_checkbox_input'=>'required',
             // 'f10_select_input'=>'required',
             // 'f10_select_input'=>'required',
