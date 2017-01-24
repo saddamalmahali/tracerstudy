@@ -33,12 +33,22 @@ Route::get('/daftar-alumni', 'AlumniController@daftar_alumni');
 Route::post('/alumni/save_register', 'AlumniController@simpan_alumni');
 
 Route::group(['middleware'=>['web']], function(){
+    
+    //Menu Alumni
     Route::get('/admin/alumni', 'AdminController@index_alumni');
     Route::get('/admin/alumni/tambah', 'AdminController@tambah_alumni');
     Route::post('/admin/alumni/save', 'AdminController@simpan_alumni');
     Route::get('/admin/alumni/update/{id}', 'AdminController@update_alumni');
     Route::post('/admin/alumni/delete', 'AdminController@hapus_alumni');
     Route::get('/admin/alumni/view/{id}', 'AdminController@view_alumni');
+
+    //Menu Admin
+    Route::get('/admin/user_admin', 'AdminController@index_user_admin');
+    Route::get('/admin/user_admin/tambah', 'AdminController@tambah_user_admin');
+    Route::post('/admin/user_admin/save', 'AdminController@save_user_admin');
+    Route::post('/admin/user_admin/save_update', 'AdminController@save_update_user_admin');
+    Route::get('/admin/user_admin/update/{id}', 'AdminController@update_user_admin');
+    Route::post('/admin/user_admin/delete', 'AdminController@hapus_user_admin');
 });
 
 Route::group(['middleware' => ['tracer']], function () {

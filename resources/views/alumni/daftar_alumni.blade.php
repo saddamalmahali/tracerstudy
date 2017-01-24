@@ -15,7 +15,6 @@
                                 <th style="text-align:center;">Tempat/<br />Tanggal Lahir</th>
                                 <th style="text-align:center;">Jenis <br />Kelamin</th>
                                 <th style="text-align:center;">Email</th>
-                                <th style="text-align:center;">Status</th>
 
                             </tr>
                         </thead>
@@ -28,14 +27,7 @@
                                     <td align="center">{{$alumni->tempat_lahir.', '.date('d-m-Y', strtotime($alumni->tanggal_lahir))}}</td>
                                     <td align="center">{{$alumni->jenis_kelamin}}</td>
                                     <td align="center">{{$alumni->email}}</td>
-                                    <td align="center">
-                                        @if($alumni->cek_status($alumni->email))
-                                            <span class="label label-primary">{{$alumni->status($alumni->email)}}</span>
-                                        @else
-                                            <span class="label label-danger">{{$alumni->status($alumni->email)}}</span>
-
-                                        @endif
-                                    </td>
+                                    
                                 </tr>
                                 <?php $i++; ?>
                             @empty

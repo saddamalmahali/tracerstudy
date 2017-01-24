@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Alumni;
+use App\User;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\RedirectsUsers;
 class AdminController extends Controller
@@ -137,5 +138,75 @@ class AdminController extends Controller
     {
         $alumni = Alumni::find($id);
         return view('admin.alumni.view',['alumni'=>$alumni]);
+    }
+
+    public function index_user_admin(){
+
+        $admin = new User();
+        $admin = $admin->paginate('5');
+        return view('admin.user_admin.index', ['data_user_admin'=>$admin]);
+    }
+
+    public function tambah_user_admin()
+    {
+        return view('admin.user_admin.tambah');
+    }
+
+    public function save_user_admin(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|max:50',
+            
+            'email'=>'required|email|max:255|unique:users',
+            'password'=>'required|min:6'
+        ]);
+
+        $admin = new User();
+        $admin->name = $request->input('name');
+        $admin->email = $request->input('email');
+        $admin->password = bcrypt($request->input('password'));
+
+        if($admin->save()){
+            $request->session()->flash('sukses', 'Berhasil Menyimpan Data!');            
+            return redirect('/admin/user_admin');
+        }
+    }
+
+    public function update_user_admin($id)
+    {
+        $admin = User::find($id);
+        return view('admin.user_admin.update', ['admin'=>$admin]);
+    }
+
+    public function save_update_user_admin(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|max:50',
+            
+            'email'=>'required|email|max:255'
+        ]);
+
+        $admin = User::find($request->input('id'));
+        $admin->name = $request->input('name');
+        $admin->email = $request->input('email');
+        if($request->input('password') != ''){
+            $admin->password = bcrypt($request->input('password'));
+        }
+
+        if($admin->save()){
+            $request->session()->flash('sukses', 'Berhasil Menyimpan Data!');            
+            return redirect('/admin/user_admin');
+        }
+    }
+
+    public function hapus_user_admin(Request $request)
+    {
+        $id_user = $request->input('id');
+
+        $admin = User::find($id_user);
+
+        if($admin->delete()){
+            return json_encode('success');
+        }
     }
 }
