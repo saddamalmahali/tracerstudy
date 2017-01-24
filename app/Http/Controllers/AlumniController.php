@@ -488,5 +488,15 @@ class AlumniController extends Controller
         
     }
 
+    public function tentang_situs()
+    {
+        return view('tentang_situs');
+    }
+
+    public function kontak_situs()
+    {
+        return view('kontak');
+    }
+
 }
     

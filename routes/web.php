@@ -29,6 +29,8 @@ Route::post('/login-alumni', 'Auth\LoginController@login_alumni');
 Route::post('/masuk-alumni', 'Auth\LoginController@masuk_alumni');
 Route::get('/reg-alumni', 'AlumniController@register');
 Route::get('/daftar-alumni', 'AlumniController@daftar_alumni');
+Route::get('/tentang', 'AlumniController@tentang_situs');
+Route::get('/kontak', 'AlumniController@kontak_situs');
 
 Route::post('/alumni/save_register', 'AlumniController@simpan_alumni');
 

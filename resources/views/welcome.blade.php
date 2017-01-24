@@ -2,13 +2,7 @@
 
 @section('content')
     <div class="row section featured topspace">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <center><img src="{{url('img/sampul.jpg')}}" style="margin-bottom:50px;"  width="820" height="227" alt=""></center>
-                </div>
-            </div>
-        </div>
+        
                 <h2 class="section-title"><span>Tracer Study</span></h2>
                 <div class="row">
             
