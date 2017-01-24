@@ -26,7 +26,7 @@
                             </div>
                         @endif
                         <div class="pull-right">
-                            <a href="{{url('/admin/user_admin/tambah')}}" class="btn btn-primary" style="margin:20px;">Tambah Alumni</a>
+                            <a href="{{url('/admin/user_admin/tambah')}}" class="btn btn-primary" style="margin:20px;">Tambah Data</a>
                         </div>
                         <table class="table table-hover table-bordered">
                             <thead>
