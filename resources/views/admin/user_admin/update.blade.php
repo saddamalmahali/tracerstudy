@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Admin 
+            ADMIN 
             <p><small>Tambah User Admin</small></p>
             
         </h1>
@@ -15,7 +15,7 @@
             <div class="col-md-8">
                 <div class="box box-primary">
                     <div class="box-header">
-                        <h3 class="box-title">FORM TAMBAH USER</h3>
+                        <h3 class="box-title">FORM UPDATE ADMIN</h3>
                     </div>
                     <form action="{{url('admin/user_admin/save_update')}}" method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}

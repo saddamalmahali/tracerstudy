@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Admin 
+            ADMIN 
             <p><small>Tambah User Admin</small></p>
             
         </h1>

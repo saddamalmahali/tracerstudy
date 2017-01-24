@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1> 
-            Data Alumni
+            Data Admin
             <p><small>index</small></p>
             
         </h1>
@@ -15,7 +15,7 @@
             <div class="col-md-12">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h2 class="panel-title">List Data Alumni</h2>
+                        <h2 class="panel-title">List Data Admin</h2>
                     </div>
                     <div class="panel-body">
                         @if(Session::has('sukses'))

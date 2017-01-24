@@ -135,8 +135,14 @@ class AlumniController extends Controller
 
     public function index_tracer()
     {
-        $alumni = auth('tracer')->user();
-        return view('alumni.tracer.index', ['alumni'=>$alumni]);
+        $email_alumni = auth('tracer')->user()->email;
+        $alumni = new Alumni();
+        if($alumni->cek_status($email_alumni)){
+            return view('alumni.tracer.done');
+        }else{
+            return view('alumni.tracer.index', ['alumni'=>$alumni]);
+        }
+        
     }
 
     public function input_tracer(Request $request)
