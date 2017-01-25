@@ -144,7 +144,8 @@ class AlumniController extends Controller
         if($alumni->cek_status($email_alumni)){
             return view('alumni.tracer.done');
         }else{
-            return view('alumni.tracer.index', ['alumni'=>$alumni]);
+            $user_alumni = auth('tracer')->user(); 
+            return view('alumni.tracer.index', ['alumni'=>$user_alumni]);
         }
         
     }
