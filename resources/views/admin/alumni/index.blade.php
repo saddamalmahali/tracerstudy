@@ -67,7 +67,13 @@
                                                 }
                                             ?>
                                         </span></td>
-                                        <td></td>
+                                        <td>
+                                            @if($alumni->cek_status($alumni->email))
+                                                <span class="label label-primary">Sudah Mengisi</span>
+                                            @else
+                                                <span class="label label-danger">Belum Mengisi</span>
+                                            @endif
+                                        </td>
                                         <td align="center">
                                             <a href="{{url('/admin/alumni/view').'/'.$alumni->id}}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></a>
                                             <a href="{{url('/admin/alumni/update').'/'.$alumni->id}}" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i></a>
