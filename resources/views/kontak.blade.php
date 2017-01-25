@@ -12,6 +12,9 @@
                         <td>Kepala CDC STT Garut</td>
                         <td style="width:5%;">:</td>
                         <td><b>Leni Fitriani, M.Kom</b></td>
+                        <td rowspan="4">
+                            <img src="{{url('/img/leni_fitriani.jpeg')}}" class="img-thumbnail"  width="200" height="200" alt="">
+                        </td>
                     </tr>
                     <tr>
                         <td>Alamat</td>
@@ -31,12 +34,12 @@
                     <tr>
                         <td>Whatsapp</td>
                         <td style="width:5%;">:</td>
-                        <td>+6285323275813</td>
+                        <td colspan="2">+6285323275813</td>
                     </tr>
                     <tr>
                         <td>Email</td>
                         <td style="width:5%;">:</td>
-                        <td>leni.fitriani@sttgarut.ac.id</td>
+                        <td colspan="2">leni.fitriani@sttgarut.ac.id</td>
                     </tr>
 
                 </table>
