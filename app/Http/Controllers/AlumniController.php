@@ -480,7 +480,7 @@ class AlumniController extends Controller
             }
 
 
-            return json_encode($data_quesioner);
+            return view('alumni.tracer.done');
             // //isi form f9
             // $f9_input = $request->input('f9_checkbox_input');
             // if($f9_input != null){
