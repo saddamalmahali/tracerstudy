@@ -19,10 +19,16 @@ class AdminTracerController extends Controller
     public function view_tracer($id_tracer, Request $request)
     {
         $tracer = Tracer::find($id_tracer);
-        $isian_tracer = $tracer->detile();
+        $isian_tracer = $tracer->detile;
+//        echo json_encode($isian_tracer);
         return view('admin.tracer.view', [
             'tracer'=>$tracer,
             'isian_tracer'=>$isian_tracer
         ]);
+    }
+
+    public function edit_tracer($id_tracer, Request $request)
+    {
+
     }
 }

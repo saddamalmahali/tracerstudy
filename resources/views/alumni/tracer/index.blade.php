@@ -150,35 +150,35 @@
                                             
                                             <div class="checkbox">
                                                 <label>
-                                                <input type="checkbox" class="flat-red" name="f4_check[10]" value="10">
+                                                <input type="checkbox" class="flat-red" name="f4_check[11]" value="11">
                                                 Melalui relasi (misalnya dosen, orang tua, saudara, teman, dll.)
                                                 </label>
                                             </div>
 
                                             <div class="checkbox">
                                                 <label>
-                                                <input type="checkbox" class="flat-red" name="f4_check[11]" value="11">
+                                                <input type="checkbox" class="flat-red" name="f4_check[12]" value="12">
                                                 Membangun bisnis sendiri
                                                 </label>
                                             </div>
 
                                             <div class="checkbox">
                                                 <label>
-                                                <input type="checkbox" class="flat-red" name="f4_check[12]" value="12">
+                                                <input type="checkbox" class="flat-red" name="f4_check[13]" value="13">
                                                 Melalui penempatan kerja atau magang
                                                 </label>
                                             </div>
 
                                             <div class="checkbox">
                                                 <label>
-                                                <input type="checkbox" class="flat-red" name="f4_check[13]" value="13">
+                                                <input type="checkbox" class="flat-red" name="f4_check[14]" value="14">
                                                 Bekerja di tempat yang sama dengan tempat kerja semasa kuliah
                                                 </label>
                                             </div>
 
                                             <div class="checkbox">
                                                 <label>
-                                                <input type="checkbox" class="flat-red" name="f4_check[14]" value="14">
+                                                <input type="checkbox" class="flat-red" name="f4_check[15]" value="15">
                                                 Lainnya
                                                 </label>
                                             </div>
