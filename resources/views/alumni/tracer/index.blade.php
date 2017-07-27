@@ -19,6 +19,7 @@
                     </div>
                     <form action="{{url('/alumni/submit_form_tracer')}}" method="post">
                         {{ csrf_field() }}
+                        <input type="hidden" name="id_alumni" value="{{$alumni->id}}">
                         <div class="box-body">
                             <table class='table'>
                                 <tr class="bg-primary">

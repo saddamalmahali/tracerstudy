@@ -49,4 +49,9 @@ class Alumni extends Authenticatable
             return false;
         }
     }
+
+    public function tracer()
+    {
+        return $this->belongsToMany('App\Tracer', 'tracer_alumni', 'id_alumni', 'id_tracer');
+    }
 }

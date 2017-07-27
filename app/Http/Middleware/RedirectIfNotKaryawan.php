@@ -3,8 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\Auth;
-class RedirectIfNotAlumni
+
+class RedirectIfNotKaryawan
 {
     /**
      * Handle an incoming request.
@@ -13,11 +13,8 @@ class RedirectIfNotAlumni
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next, $guard = 'tracer')
+    public function handle($request, Closure $next)
     {
-        if (!Auth::guard($guard)->check()) {
-    			return redirect('/login-alumni');
-    		}
         return $next($request);
     }
 }

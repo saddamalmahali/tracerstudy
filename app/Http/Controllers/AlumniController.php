@@ -242,7 +242,7 @@ class AlumniController extends Controller
             // 'f17_option_30_a'=>'required',
             // 'f17_option_30_b'=>'required',
         ]);
-        echo json_encode($request->all());
+//        echo json_encode($request->all());
 
         //Isi header ke tabel tracer
         $tracer = new Tracer();
@@ -478,6 +478,9 @@ class AlumniController extends Controller
                     unset($f17);
                 }
             }
+
+            $alumni = Alumni::find($request->get('id_alumni'));
+            $tracer->alumni()->attach($alumni->id);
 
 
             return view('alumni.tracer.done');
