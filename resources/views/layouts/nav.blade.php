@@ -12,6 +12,7 @@
             <li class="{{url()->full() == url('/admin/user_admin')? 'active' : ''}}"><a href="{{url('/admin/user_admin')}}"><i class="ion-person"></i><span>&nbsp;User Admin</span></a></li>
             <li class="{{url()->full() == url('/admin/alumni')? 'active' : ''}}"><a href="{{url('/admin/alumni')}}"><i class="ion-android-contacts"></i><span>&nbsp;Alumni</span></a></li>
             <li class="{{url()->full() == url('/admin/tracer')? 'active' : ''}}"><a href="{{url('/admin/tracer')}}"><i class="fa fa-calendar-check-o"></i><span>&nbsp;Data Tracer</span></a></li>
+            <li class="header">LAPORAN</li>
         @endif
 
         @if(Auth::guard('tracer')->check())

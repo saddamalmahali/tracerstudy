@@ -59,6 +59,9 @@ Route::group(['middleware'=>['web']], function(){
     Route::group(['prefix'=>'admin/tracer'], function(){
         Route::get('/', 'AdminTracerController@index');
         Route::get('/view/{id_tracer}', 'AdminTracerController@view_tracer');
+        Route::get('/hapus/{id_tracer}', 'AdminTracerController@hapus_tracer');
+        Route::get('/update/{id_tracer}', 'AdminTracerController@edit_tracer');
+        Route::post('/simpan_update', 'AdminTracerController@update_tracer');
     });
 });
 
