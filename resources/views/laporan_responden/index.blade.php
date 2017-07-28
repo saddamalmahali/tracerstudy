@@ -111,31 +111,41 @@
                                 <td class="text-danger" style="vertical-align:top;" align="center" width="5%">F12</td>
                                 <td width="30%" style="vertical-align:top;">Tempat anda bekerja saat ini bergerak di bidang apa? <p><i>(Klasifikasi Baku Lapangan Usaha Indonesia, Kemnakertrans, 2009)</i></p></td>
                                 <td align="center">{{$data_tracer->where('kode_form', '=', 'f12')->count()}}</td>
-                                <td></td>
+                                <td align="center">
+                                    <a href="{{url('/admin/laporan_responden/detile/f12')}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="text-danger" style="vertical-align:top;" align="center" width="5%">F13</td>
                                 <td width="30%" style="vertical-align:top;">Kira-kira berapa pendapatan anda setiap bulannya? </td>
                                 <td align="center">{{$data_tracer->where('kode_form', 'like', '%f13%')->count()}}</td>
-                                <td></td>
+                                <td align="center">
+                                    <a href="{{url('/admin/laporan_responden/detile/f13')}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="text-danger" style="vertical-align:top;" align="center" width="5%">F14</td>
                                 <td width="30%" style="vertical-align:top;">Seberapa erat hubungan antara bidang studi dengan pekerjaan anda? </td>
                                 <td align="center">{{$data_tracer->where('kode_form', '=', 'f14')->count()}}</td>
-                                <td></td>
+                                <td align="center">
+                                    <a href="{{url('/admin/laporan_responden/detile/f14')}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="text-danger" style="vertical-align:top;" align="center" width="5%">F15</td>
                                 <td width="30%" style="vertical-align:top;">Tingkat pendidikan apa yang paling tepat/sesuai untuk pekerjaan anda saat ini?</td>
                                 <td align="center">{{$data_tracer->where('kode_form', '=', 'f15')->count()}}</td>
-                                <td></td>
+                                <td align="center">
+                                    <a href="{{url('/admin/laporan_responden/detile/f15')}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="text-danger" style="vertical-align:top;" width="5%" align="center">F16</td>
                                 <td style="vertical-align:top;">Jika menurut anda pekerjaan anda saat ini tidak sesuai dengan pendidikan anda, mengapa anda mengambilnya? Jawaban bisa lebih dari satu</td>
                                 <td align="center">{{$data_tracer->where('kode_form', '=', 'f16')->count()}}</td>
-                                <td></td>
+                                <td align="center">
+                                    <a href="{{url('/admin/laporan_responden/detile/f16')}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="text-danger" style="vertical-align:top;" align="center" width="5%">F17</td>

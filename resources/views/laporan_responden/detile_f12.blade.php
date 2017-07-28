@@ -46,11 +46,11 @@
             chart_head = data.chart_head;
             config.data.labels = chart_head;
             data_chart = data.chart_data;
-            config.data.datasets[0].data= data_chart;
-//            $.each(data_chart, function(index, value){
-//                console.log(value);
-//                config.data.datasets[0].data[index] = value;
-//            });
+//            config.data.datasets[0].data= data_chart;
+            $.each(data_chart, function(index, value){
+                console.log(value);
+                config.data.datasets[0].data[index] = value;
+            });
             config.options.title.display = true;
             config.options.title.text = data.chart_title;
 //            var i = 0;
@@ -120,7 +120,9 @@
                     "MID"
                 ]
             },
+            showXAxisLabel: false,
             options: {
+
                 responsive: true,
                 title: {
                     display: true,
@@ -131,10 +133,12 @@
                 },
                 scales: {
                     xAxes: [{
+                        display: false,
                         gridLines : {
                             display : false,
                         },
                         ticks: {
+
                             stepSize: 1,
                             min: 0,
                             autoSkip: false
