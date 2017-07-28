@@ -142,7 +142,15 @@ class AlumniController extends Controller
         $email_alumni = auth('tracer')->user()->email;
         $alumni = new Alumni();
         if($alumni->cek_status($email_alumni)){
-            return view('alumni.tracer.done');
+
+            $tracer = Alumni::find(auth('tracer')->user()->id)->tracer()->first();
+            $isian_tracer = $tracer->detile;
+//        echo json_encode($isian_tracer);
+
+            return view('alumni.tracer.done', [
+                'tracer'=>$tracer,
+                'isian_tracer'=>$isian_tracer
+            ]);
         }else{
             $user_alumni = auth('tracer')->user(); 
             return view('alumni.tracer.index', ['alumni'=>$user_alumni]);
