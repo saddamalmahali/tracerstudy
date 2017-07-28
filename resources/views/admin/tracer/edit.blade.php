@@ -408,7 +408,7 @@
                                         <div class="form-group{{ $errors->has('f12_select_input') ? ' has-error' : '' }}">
 
                                             <div class="col-md-12">
-                                                <select name="f12_select_input" disabled id="f12_select_input" class="form-control select2" style="width : 100%;">
+                                                <select name="f12_select_input" id="f12_select_input" class="form-control select2" style="width : 100%;">
                                                     <option value="" selected>Pilih Opsi</option>
                                                     <option value="1" {{$isian_tracer->where('kode_form', '=', 'f12')->first()->value==1 ? "selected" : "" }}>Pertanian tanaman, peternakan, perburuan dan kegiatan yang berhubungan dengan itu</option>
                                                     <option value="2" {{$isian_tracer->where('kode_form', '=', 'f12')->first()->value==2 ? "selected" : "" }}>Kehutanan dan penebangan kayu</option>

@@ -18,7 +18,7 @@
                     </div>
                     <div class="box-body ">
                         <div class="col-md-4 col-md-offset-4">
-                            <h3>{{$res['title_panel']}}</h3>
+                            <h3>Responden Untuk Form 1</h3>
                             <div id="container" class="text-center" style="width: 80%;">
                                 <canvas id="myChart"></canvas>
                             </div>

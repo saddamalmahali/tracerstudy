@@ -14,14 +14,11 @@
             <div class="col-md-12">
                 <div class="box box-primary">
                     <div class="box-header">
-                        <h2 class="box-title">{{$res['page_head']}}</h2>
+                        <h2 class="box-title">{{$res['title_panel']}}</h2>
                     </div>
                     <div class="box-body ">
-                        <div class="col-md-4 col-md-offset-4">
-                            <h3>{{$res['title_panel']}}</h3>
-                            <div id="container" class="text-center" style="width: 80%;">
-                                <canvas id="myChart"></canvas>
-                            </div>
+                        <div id="container" class="text-center" style="width: 100%;">
+                            <canvas id="myChart"></canvas>
                         </div>
                     </div>
                 </div>
@@ -49,11 +46,13 @@
             chart_head = data.chart_head;
             config.data.labels = chart_head;
             data_chart = data.chart_data;
-            config.data.datasets[0].data= data_chart;
-//            $.each(data_chart, function(index, value){
-//                console.log(value);
-//                config.data.datasets[0].data[index]= value;
-//            });
+//            config.data.datasets[0].data= data_chart;
+            $.each(data_chart, function(index, value){
+                console.log(value);
+                config.data.datasets[0].data[index] = value;
+            });
+            config.options.title.display = true;
+            config.options.title.text = data.chart_title;
 //            var i = 0;
 //            $.each(data_chart,  function(index, value){
 //                config.data.datasets[0].data[index] = value;
@@ -76,7 +75,6 @@
             data: {id_form: id_form},
             dataType : 'json',
             success : function(data){
-                console.log(data.chart_data)
                 set_data(data);
             }
         });
@@ -93,7 +91,7 @@
         var data_chart= '';
 
         var config = {
-            type: 'pie',
+            type: 'bar',
             data: {
                 datasets: [{
                     data: [
@@ -111,8 +109,7 @@
                         window.chartColors.green,
                         window.chartColors.blue,
                         window.chartColors.grey,
-                    ],
-                    label: 'Dataset 1'
+                    ]
                 }],
                 labels: [
                     "ARS",
@@ -124,7 +121,27 @@
                 ]
             },
             options: {
-                responsive: true
+                responsive: true,
+                title: {
+                    display: true,
+                    text: 'Responden Untuk Form 4'
+                },
+                legend: {
+                    display: false
+                },
+                scales: {
+                    xAxes: [{
+                        gridLines : {
+                            display : false,
+                        },
+                        ticks: {
+                            stepSize: 1,
+                            min: 0,
+                            autoSkip: false
+                        }
+                    }],
+
+                },
             }
         };
 
