@@ -60,7 +60,7 @@
                 <div class="col-md-6 widget">
                     <div class="widget-body">
                         <p class="text-right">
-                            Copyright &copy; {{date('Y')}}, Intania Sintiani. </p>
+                            Copyright &copy; {{date('Y')}}, Intania Sintiani </p>
                     </div>
                 </div>
 
