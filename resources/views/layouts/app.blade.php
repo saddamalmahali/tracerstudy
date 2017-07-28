@@ -151,7 +151,7 @@
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     
-    <strong>Copyright &copy; {{date('Y')}} Alfi S M & Intania Sintiani All rights
+    <strong>Copyright &copy; {{date('Y')}} Intania Sintiani All rights
     reserved.
   </footer>
 
