@@ -68,8 +68,8 @@
                                         </span>
                                     </td>
                                     <td align="center">
-                                        <a href="{{url('/admin/tracer/view').'/'.$alumni->id}}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></a>
-                                        <a href="{{url('/admin/tracer/update').'/'.$alumni->id}}" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i></a>
+                                        {{--<a href="{{url('/admin/tracer/view').'/'.$alumni->id}}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></a>--}}
+                                        {{--<a href="{{url('/admin/tracer/update').'/'.$alumni->id}}" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i></a>--}}
                                         <a href="{{url('/admin/tracer/hapus').'/'.$alumni->id}}" onclick="if(confirm('Apakah Anda Yakin Ingin Menghapus Data Tracer Alumni?')){ return true;} else return false;" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
 
                                     </td>
