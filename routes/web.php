@@ -63,6 +63,12 @@ Route::group(['middleware'=>['web']], function(){
         Route::get('/update/{id_tracer}', 'AdminTracerController@edit_tracer');
         Route::post('/simpan_update', 'AdminTracerController@update_tracer');
     });
+
+    Route::group(['prefix'=>'admin/laporan_responden'], function(){
+        Route::get('/', 'LaporanRespondenController@index');
+        Route::get('/detile/{id_form}', 'LaporanRespondenController@tracer_detile');
+        Route::post('/get_chart_content', 'LaporanRespondenController@getChartContent');
+    });
 });
 
 Route::group(['middleware' => ['tracer']], function () {
