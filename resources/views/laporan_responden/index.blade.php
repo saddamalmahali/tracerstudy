@@ -26,10 +26,10 @@
                                                 <option value="" selected>Semua Jurusan</option>
                                                 <option value="55201">Teknik Informatika (S1)</option>
                                                 <option value="26201">Teknik Industri (S1)</option>
-                                                <option value="56401">Teknik Industri (S1)</option>
-                                                <option value="22201">Teknik Industri (S1)</option>
-                                                <option value="23201">Teknik Industri (S1)</option>
-                                                <option value="26402">Teknik Industri (S1)</option>
+                                                <option value="56401">Teknik Komputer (D3)</option>
+                                                <option value="22201">Teknik Sipil (S1)</option>
+                                                <option value="23201">Arsitektur (S1)</option>
+                                                <option value="26402">Manajemen Industri (D3)</option>
                                             </select>
                                         </div>
                                         <div class="col-md-4">
