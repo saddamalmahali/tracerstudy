@@ -2,20 +2,46 @@
 
 namespace App\Http\Controllers;
 
+use App\Alumni;
+use App\AlumniTracer;
 use App\Tracer;
 use App\TracerDetile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 
 
 class LaporanRespondenController extends Controller
 {
-    public function index()
+
+
+
+    public function index(Request $request)
     {
-        $tracer = new TracerDetile();
-        return view('laporan_responden.index', [
-            'data_tracer'=>$tracer
-        ]);
+        $jurusan = $request->get('jurusan');
+        if($jurusan){
+
+            $alumni = Alumni::where('jurusan', '=', $jurusan)->get();
+
+            $query_tracer = AlumniTracer::select('id_tracer')->whereIn('id_alumni', $alumni)->get();
+            $tracer = Tracer::whereIn('id', $query_tracer)->get();
+            $tracer_detile = TracerDetile::whereIn('id_tracer', $tracer)->get();
+
+//            return json_encode($tracer_detile);
+            return view('laporan_responden.index', [
+                'data_tracer'=>$tracer_detile
+            ]);
+
+        }else{
+
+            $tracer = new TracerDetile();
+            return view('laporan_responden.index', [
+                'data_tracer'=>$tracer
+            ]);
+
+        }
+
+
     }
 
     public function tracer_detile($id_form, Request $request)
@@ -179,6 +205,7 @@ class LaporanRespondenController extends Controller
 
     public function getChartContent(Request $request)
     {
+        $jurusan = $request->get('jurusan');
         if($request->get('id_form') == 'f3'){
             $data_chart = [
                 TracerDetile::where('kode_form', '=', 'f3')->where('option', '=', 1)->count(),
@@ -618,5 +645,6 @@ class LaporanRespondenController extends Controller
 
 
     }
+
 
 }

@@ -17,6 +17,31 @@
                         <h2 class="box-title">List Data Tracer Beserta Responden</h2>
                     </div>
                     <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form action=""">
+                                    <div class="form-group">
+                                        <div class="col-md-8">
+                                            <select name="jurusan" id="" class="form-control">
+                                                <option value="" selected>Semua Jurusan</option>
+                                                <option value="55201">Teknik Informatika (S1)</option>
+                                                <option value="26201">Teknik Industri (S1)</option>
+                                                <option value="56401">Teknik Industri (S1)</option>
+                                                <option value="22201">Teknik Industri (S1)</option>
+                                                <option value="23201">Teknik Industri (S1)</option>
+                                                <option value="26402">Teknik Industri (S1)</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="submit" class="btn btn-primary" value="Filter">
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                        <br />
                         <table class='table table-bordered'>
                             <tr class="bg-primary">
                                 <th colspan="2" style="text-align: center;" >Isian Data Quesioner</th>

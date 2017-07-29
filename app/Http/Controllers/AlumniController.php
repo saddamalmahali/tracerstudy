@@ -52,11 +52,11 @@ class AlumniController extends Controller
 
         // print_r($request->all());
         // echo "ID Alumni :".$id_alumni;
-        if($id_alumni == ''){
-            echo "Tidak Ada Data";
-        }else{
-            echo "Ada Data";
-        }
+//        if($id_alumni == ''){
+//            echo "Tidak Ada Data";
+//        }else{
+//            echo "Ada Data";
+//        }
         if($id_alumni == ""){
             $alumni = new Alumni();
 

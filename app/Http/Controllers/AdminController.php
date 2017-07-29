@@ -137,7 +137,15 @@ class AdminController extends Controller
     public function view_alumni($id)
     {
         $alumni = Alumni::find($id);
-        return view('admin.alumni.view',['alumni'=>$alumni]);
+        $tracer = $alumni->tracer()->first();
+        $isian_tracer = $tracer->detile;
+//        echo json_encode($isian_tracer);
+        return view('admin.alumni.view', [
+            'alumni'=>$alumni,
+            'tracer'=>$tracer,
+            'isian_tracer'=>$isian_tracer
+        ]);
+//        return view('admin.alumni.view',['alumni'=>$alumni]);
     }
 
     public function index_user_admin(){
