@@ -14,7 +14,7 @@
     <section class="content-header">
         <h1>
             Alumni <div class="pull-right"><a href="{{url('/admin/alumni')}}" class="btn btn-warning btn-lg"><i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Kembali</a></div>
-            <p><small>Detail Alumni & Isian Tracer : {{$tracer->alumni()->first()->nama_depan.' '.$tracer->alumni()->first()->nama_belakang}}</small></p>
+            <p><small>Detail Alumni & Isian Tracer : {{$alumni->nama_depan.' '.$alumni->nama_belakang}}</small></p>
 
         </h1>
 
