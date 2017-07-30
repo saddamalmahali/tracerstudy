@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            <p><small>Data Responden Jurusan <?php
+            <p><small>Laporan Jurusan  <?php
                     switch($res['id_jurusan']){
                         case "55201" :
                             echo "Teknik Informatika (S1)";
