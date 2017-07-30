@@ -14,7 +14,7 @@
 
             <li class="header">LAPORAN</li>
             <li class="{{url()->full() == url('/admin/laporan_responden')? 'active' : ''}}">
-                <a href="{{url('/admin/laporan_responden')}}"><i class="fa fa-area-chart"></i><span>&nbsp;Responden</span></a>
+                <a href="{{url('/admin/laporan_responden')}}"><i class="fa fa-area-chart"></i><span>&nbsp;Laporan </span></a>
             </li>
         @endif
 
