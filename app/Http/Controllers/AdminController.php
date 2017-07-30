@@ -138,7 +138,13 @@ class AdminController extends Controller
     {
         $alumni = Alumni::find($id);
         $tracer = $alumni->tracer()->first();
-        $isian_tracer = $tracer->detile;
+        $isian_tracer = null;
+        if($tracer){
+            $isian_tracer = $tracer->detile;
+        }else{
+            $isian_tracer= null;
+        }
+
 //        echo json_encode($isian_tracer);
         return view('admin.alumni.view', [
             'alumni'=>$alumni,
