@@ -35,12 +35,12 @@
                             <tr>
                                 <td>Nama Depan</td>
                                 <td style="width: 5%;">:</td>
-                                <td align="left" style="width: 30%;">{{$tracer->alumni()->first()->nama_depan}}</td>
+                                <td align="left" style="width: 30%;">{{$alumni->nama_depan}}</td>
                                 <td>Jurusan</td>
                                 <td style="width: 5%;">:</td>
                                 <td style="width: 30%;" align="left">
                                     <?php
-                                    switch($tracer->alumni()->first()->jurusan){
+                                    switch($alumni->jurusan){
                                         case "55201" :
                                             echo "Teknik Informatika (S1)";
                                             break;
@@ -67,16 +67,16 @@
                             <tr>
                                 <td>Nama Belakang</td>
                                 <td style="width: 5%;">:</td>
-                                <td align="left">{{$tracer->alumni()->first()->nama_belakang}}</td>
+                                <td align="left">{{$alumni->nama_belakang}}</td>
 
                                 <td>Tahun Lulus</td>
                                 <td style="width: 5%;">:</td>
-                                <td align="left">{{$tracer->alumni()->first()->tahun_lulus}}</td>
+                                <td align="left">{{$alumni->tahun_lulus}}</td>
                             </tr>
                             <tr>
                                 <td>Jenis Kelamin</td>
                                 <td style="width: 5%;">:</td>
-                                <td align="left">{{$tracer->alumni()->first()->jenis_kelamin == 'L'? 'Laki - Laki' : 'Perempuan'}}</td>
+                                <td align="left">{{$alumni->jenis_kelamin == 'L'? 'Laki - Laki' : 'Perempuan'}}</td>
                             </tr>
                         </table>
                     </div>
