@@ -19,7 +19,7 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <form action=""">
+                                <form action="">
                                     <div class="form-group">
                                         <div class="col-md-8">
                                             <select name="jurusan" id="" class="form-control">
@@ -55,7 +55,12 @@
                                     {{$data_tracer->where('kode_form', '=', 'f3')->count()}}
                                 </td>
                                 <td align="center">
-                                    <a href="{{url('/admin/laporan_responden/detile/f3')}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @if($jurusan)
+                                        <a href="{{url('/admin/laporan_responden/detile/f3').'/'.$jurusan}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @else
+                                        <a href="{{url('/admin/laporan_responden/detile/f3')}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @endif
+
                                 </td>
                             </tr>
                             <tr>
@@ -63,7 +68,12 @@
                                 <td style="vertical-align:top;">Bagaimana anda mencari pekerjaan tersebut? Jawaban bisa lebih dari satu</td>
                                 <td align="center">{{$data_tracer->where('kode_form', '=', 'f4')->count()}}</td>
                                 <td align="center">
-                                    <a href="{{url('/admin/laporan_responden/detile/f4')}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @if($jurusan)
+                                        <a href="{{url('/admin/laporan_responden/detile/f4').'/'.$jurusan}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @else
+                                        <a href="{{url('/admin/laporan_responden/detile/f4')}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @endif
+
                                 </td>
                             </tr>
                             <tr>
@@ -71,7 +81,11 @@
                                 <td width="30%" style="vertical-align:top;">Berapa bulan waktu yang dihabiskan (sebelum dan sesudah kelulusan) untuk memeroleh pekerjaan pertama?</td>
                                 <td align="center">{{$data_tracer->where('kode_form', '=', 'f5')->count()}}</td>
                                 <td align="center">
-                                    <a href="{{url('/admin/laporan_responden/detile/f5')}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @if($jurusan)
+                                        <a href="{{url('/admin/laporan_responden/detile/f5').'/'.$jurusan}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @else
+                                        <a href="{{url('/admin/laporan_responden/detile/f5')}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @endif
                                 </td>
                             </tr>
                             <tr>
@@ -79,7 +93,11 @@
                                 <td width="30%" style="vertical-align:top;">Berapa perusahaan/instansi/institusi yang sudah anda lamar (lewat surat atau e-mail) sebelum anda memeroleh pekerjaan pertama?</td>
                                 <td align="center">{{$data_tracer->where('kode_form', '=', 'f6')->count()}}</td>
                                 <td align="center">
-                                    <a href="{{url('/admin/laporan_responden/detile/f6')}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @if($jurusan)
+                                        <a href="{{url('/admin/laporan_responden/detile/f6').'/'.$jurusan}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @else
+                                        <a href="{{url('/admin/laporan_responden/detile/f6')}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @endif
                                 </td>
                             </tr>
                             <tr>
@@ -87,7 +105,11 @@
                                 <td width="30%" style="vertical-align:top;">Berapa banyak perusahaan/instansi/institusi yang merespons lamaran anda?</td>
                                 <td align="center">{{$data_tracer->where('kode_form', '=', 'f7')->count()}}</td>
                                 <td align="center">
-                                    <a href="{{url('/admin/laporan_responden/detile/f7')}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @if($jurusan)
+                                        <a href="{{url('/admin/laporan_responden/detile/f7').'/'.$jurusan}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @else
+                                        <a href="{{url('/admin/laporan_responden/detile/f7')}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @endif
                                 </td>
                             </tr>
                             <tr>
@@ -95,7 +117,11 @@
                                 <td width="30%" style="vertical-align:top;">Berapa banyak perusahaan/instansi/institusi yang mengundang anda untuk wawancara?</td>
                                 <td align="center">{{$data_tracer->where('kode_form', '=', 'f7a')->count()}}</td>
                                 <td align="center">
-                                    <a href="{{url('/admin/laporan_responden/detile/f7a')}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @if($jurusan)
+                                        <a href="{{url('/admin/laporan_responden/detile/f7a').'/'.$jurusan}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @else
+                                        <a href="{{url('/admin/laporan_responden/detile/f7a')}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @endif
                                 </td>
                             </tr>
                             <tr>
@@ -103,7 +129,11 @@
                                 <td width="30%" style="vertical-align:top;">Apakah anda bekerja saat ini (termasuk kerja sambilan dan wirausaha. Jika ya, lanjutkan ke f11)?</td>
                                 <td align="center">{{$data_tracer->where('kode_form', '=', 'f8')->count()}}</td>
                                 <td align="center">
-                                    <a href="{{url('/admin/laporan_responden/detile/f8')}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @if($jurusan)
+                                        <a href="{{url('/admin/laporan_responden/detile/f8').'/'.$jurusan}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @else
+                                        <a href="{{url('/admin/laporan_responden/detile/f8')}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @endif
                                 </td>
                             </tr>
                             <tr>
@@ -111,7 +141,11 @@
                                 <td style="vertical-align:top;">Bagaimana anda menggambarkan situasi anda saat ini? Jawaban bisa lebih dari satu</td>
                                 <td align="center">{{$data_tracer->where('kode_form', '=', 'f9')->count()}}</td>
                                 <td align="center">
-                                    <a href="{{url('/admin/laporan_responden/detile/f9')}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @if($jurusan)
+                                        <a href="{{url('/admin/laporan_responden/detile/f9').'/'.$jurusan}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @else
+                                        <a href="{{url('/admin/laporan_responden/detile/f9')}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @endif
                                 </td>
                             </tr>
 
@@ -120,7 +154,11 @@
                                 <td width="30%" style="vertical-align:top;">Apakah anda aktif mencari pekerjaan dalam 4 minggu terakhir? <p><i>(Pilihlah Satu Jawaban. KEMUDIAN LANJUT KE f17)</i></p></td>
                                 <td align="center">{{$data_tracer->where('kode_form', '=', 'f10')->count()}}</td>
                                 <td align="center">
-                                    <a href="{{url('/admin/laporan_responden/detile/f10')}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @if($jurusan)
+                                        <a href="{{url('/admin/laporan_responden/detile/f10').'/'.$jurusan}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @else
+                                        <a href="{{url('/admin/laporan_responden/detile/f10')}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @endif
                                 </td>
                             </tr>
 
@@ -129,7 +167,11 @@
                                 <td width="30%" style="vertical-align:top;">Apa jenis perusahaan/instansi/institusi tempat anda bekerja sekarang?</td>
                                 <td align="center">{{$data_tracer->where('kode_form', '=', 'f11')->count()}}</td>
                                 <td align="center">
-                                    <a href="{{url('/admin/laporan_responden/detile/f11')}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @if($jurusan)
+                                        <a href="{{url('/admin/laporan_responden/detile/f11').'/'.$jurusan}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @else
+                                        <a href="{{url('/admin/laporan_responden/detile/f11')}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @endif
                                 </td>
                             </tr>
                             <tr>
@@ -137,7 +179,11 @@
                                 <td width="30%" style="vertical-align:top;">Tempat anda bekerja saat ini bergerak di bidang apa? <p><i>(Klasifikasi Baku Lapangan Usaha Indonesia, Kemnakertrans, 2009)</i></p></td>
                                 <td align="center">{{$data_tracer->where('kode_form', '=', 'f12')->count()}}</td>
                                 <td align="center">
-                                    <a href="{{url('/admin/laporan_responden/detile/f12')}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @if($jurusan)
+                                        <a href="{{url('/admin/laporan_responden/detile/f12').'/'.$jurusan}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @else
+                                        <a href="{{url('/admin/laporan_responden/detile/f12')}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @endif
                                 </td>
                             </tr>
                             <tr>
@@ -145,7 +191,11 @@
                                 <td width="30%" style="vertical-align:top;">Kira-kira berapa pendapatan anda setiap bulannya? </td>
                                 <td align="center">{{$data_tracer->where('kode_form', 'like', '%f13%')->count()}}</td>
                                 <td align="center">
-                                    <a href="{{url('/admin/laporan_responden/detile/f13')}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @if($jurusan)
+                                        <a href="{{url('/admin/laporan_responden/detile/f13').'/'.$jurusan}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @else
+                                        <a href="{{url('/admin/laporan_responden/detile/f13')}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @endif
                                 </td>
                             </tr>
                             <tr>
@@ -153,7 +203,11 @@
                                 <td width="30%" style="vertical-align:top;">Seberapa erat hubungan antara bidang studi dengan pekerjaan anda? </td>
                                 <td align="center">{{$data_tracer->where('kode_form', '=', 'f14')->count()}}</td>
                                 <td align="center">
-                                    <a href="{{url('/admin/laporan_responden/detile/f14')}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @if($jurusan)
+                                        <a href="{{url('/admin/laporan_responden/detile/f14').'/'.$jurusan}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @else
+                                        <a href="{{url('/admin/laporan_responden/detile/f14')}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @endif
                                 </td>
                             </tr>
                             <tr>
@@ -161,7 +215,11 @@
                                 <td width="30%" style="vertical-align:top;">Tingkat pendidikan apa yang paling tepat/sesuai untuk pekerjaan anda saat ini?</td>
                                 <td align="center">{{$data_tracer->where('kode_form', '=', 'f15')->count()}}</td>
                                 <td align="center">
-                                    <a href="{{url('/admin/laporan_responden/detile/f15')}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @if($jurusan)
+                                        <a href="{{url('/admin/laporan_responden/detile/f15').'/'.$jurusan}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @else
+                                        <a href="{{url('/admin/laporan_responden/detile/f15')}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @endif
                                 </td>
                             </tr>
                             <tr>
@@ -169,7 +227,11 @@
                                 <td style="vertical-align:top;">Jika menurut anda pekerjaan anda saat ini tidak sesuai dengan pendidikan anda, mengapa anda mengambilnya? Jawaban bisa lebih dari satu</td>
                                 <td align="center">{{$data_tracer->where('kode_form', '=', 'f16')->count()}}</td>
                                 <td align="center">
-                                    <a href="{{url('/admin/laporan_responden/detile/f16')}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @if($jurusan)
+                                        <a href="{{url('/admin/laporan_responden/detile/f16').'/'.$jurusan}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @else
+                                        <a href="{{url('/admin/laporan_responden/detile/f16')}}" class="btn btn-success"><i class="fa fa-bar-chart-o"></i></a>
+                                    @endif
                                 </td>
                             </tr>
                             <tr>

@@ -67,7 +67,7 @@ Route::group(['middleware'=>['web']], function(){
     Route::group(['prefix'=>'admin/laporan_responden'], function(){
         Route::get('/', 'LaporanRespondenController@index');
         Route::get('/detile/{id_form}', 'LaporanRespondenController@tracer_detile');
-        Route::get('/detile/{id_form}', 'LaporanRespondenController@tracer_detile');
+        Route::get('/detile/{id_form}/{id_jurusan}', 'LaporanRespondenController@tracer_detile_with_jurusan');
         Route::post('/get_chart_content', 'LaporanRespondenController@getChartContent');
         Route::post('/get_chart_content1', 'LaporanRespondenController@getChartContent2');
     });
