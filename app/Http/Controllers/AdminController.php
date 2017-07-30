@@ -20,12 +20,19 @@ class AdminController extends Controller
     }
 
     /* Menu Alumni */
-    public function index_alumni()
+    public function index_alumni(Request $request)
     {
+        $jurusan = $request->get('jurusan');
         $alumni = new Alumni();
+
+        if($jurusan){
+            $alumni = $alumni->where('jurusan', '=', $jurusan);
+        }
+
         $alumni = $alumni->paginate('10');
 
         return view('admin.alumni.index', ['data_alumni'=> $alumni]);
+
     }
 
     public function tambah_alumni()

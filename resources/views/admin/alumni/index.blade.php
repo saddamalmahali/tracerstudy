@@ -20,6 +20,32 @@
                         <div class="pull-right">
                             <a href="{{url('/admin/alumni/tambah')}}" class="btn btn-primary" style="margin:20px;">Tambah Alumni</a>
                         </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form action="">
+                                        <div class="form-group">
+                                            <div class="col-md-8">
+                                                <select name="jurusan" id="" class="form-control">
+                                                    <option value="" selected>Semua Jurusan</option>
+                                                    <option value="55201">Teknik Informatika (S1)</option>
+                                                    <option value="26201">Teknik Industri (S1)</option>
+                                                    <option value="56401">Teknik Komputer (D3)</option>
+                                                    <option value="22201">Teknik Sipil (S1)</option>
+                                                    <option value="23201">Arsitektur (S1)</option>
+                                                    <option value="26402">Manajemen Industri (D3)</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input type="submit" class="btn btn-primary" value="Filter">
+                                            </div>
+
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+                            <br />
                         <table class="table table-hover table-bordered">
                             <thead>
                                 <tr>
@@ -83,7 +109,7 @@
                                     <?php $i++; ?>
                                 @empty
                                     <tr>
-                                        <td colspan="6" align="center">Tidak Ada Data</td>
+                                        <td colspan="8" align="center">Tidak Ada Data</td>
                                     </tr>
                                 @endforelse
                             </tbody>
